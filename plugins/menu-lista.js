@@ -130,7 +130,7 @@ let menu = `
 ┃☭│ *Tokens ➟* ${joincount} 🀄`.trim()
       
 const buttonParamsJson = JSON.stringify({
-title: "VER LISTA",
+title: "VER LISTA DE BROLY-BOT-MD",
 description: "Infórmate por medios oficiales sobre BrolyBot",
 sections: [
 { title: "ℹ️ Información", highlight_label: "Popular",
