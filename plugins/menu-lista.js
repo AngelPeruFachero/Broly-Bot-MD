@@ -89,7 +89,7 @@ const horarioFecha = lugarFecha.format('dddd, DD [de] MMMM [del] YYYY || HH:mm A
 
 if (!/web|desktop|unknown/gi.test(dispositivo)) {  
 let menu = `
-╭═══〘卐 _Katashi bot MD_ 卐〙═══⊷❍
+╭═══〘卐 _Broly bot MD_ 卐〙═══⊷❍
 ┃☭╭──────────────
 ┃☭│ 〘 卐 _ᴏᴡɴᴇʀs ᴏғᴄ_ 卐 〙
 ┃☭│ 
@@ -103,7 +103,7 @@ let menu = `
 ┃☭│ 
 ┃☭╰───────────────
 ╰═════════════════⊷
-╭════〘卐 _INFO KATASHI BOT_ 卐〙════⊷❍
+╭════〘卐 _INFO BROLY BOT_ 卐〙════⊷❍
 ┃
 ┃☭│ ᩭ✎ \`\`\`${horarioFecha}\`\`\`
 ┃☭│ ᩭ✎ *${lenguajeGB['smsTotalUsers']()}* ➺ _${Object.keys(global.db.data.users).length}_ 
@@ -126,25 +126,25 @@ let menu = `
 ┃☭│ *Pasatiempo(s)* ➺ ${user.pasatiempo === 0 ? '*Sin Registro*' : user.pasatiempo + '\n'}
 ┃☭│ *Experiencia ➟* ${exp} ⚡
 ┃☭│ *Diamantes ➟* ${limit} 💎
-┃☭│ *KataCoins ➟* ${money} 🪙
+┃☭│ *BrolyCoins ➟* ${money} 🪙
 ┃☭│ *Tokens ➟* ${joincount} 🀄`.trim()
       
 const buttonParamsJson = JSON.stringify({
 title: "VER LISTA",
-description: "Infórmate por medios oficiales sobre KatashiBot",
+description: "Infórmate por medios oficiales sobre BrolyBot",
 sections: [
 { title: "ℹ️ Información", highlight_label: "Popular",
 rows: [
-{ header: "✅ Redes", title: "🔓 Para: Todos", description: "Infórmate por medios oficiales sobre KatashiBot", id: usedPrefix + "cuentasgb" },
+{ header: "✅ Redes", title: "🔓 Para: Todos", description: "Infórmate por medios oficiales sobre BrolyBot", id: usedPrefix + "cuentasgb" },
 { header: "📢 Grupos/Canales", title: "🔓 Para: Todos", description: "¡Te esperamos!", id: usedPrefix + "grupos" },
-{ header: "🎁 Donar", title: "🔓 Para: Todos", description: "KatashiBot se mantiene funcionando gracias a donaciones ¡tú también puedes sumarte apoyando el proyecto!", id: usedPrefix + 'donar' }
+{ header: "🎁 Donar", title: "🔓 Para: Todos", description: "BrolyBot se mantiene funcionando gracias a donaciones ¡tú también puedes sumarte apoyando el proyecto!", id: usedPrefix + 'donar' }
 ]},
 { title: "🔖 Atajos", highlight_label: "Popular",
 rows: [
 { header: "🆕 Ser Bot (código)", title: "🔓 Para: Todos", description: "¡Conviértete en Bot con el método de código de 8 dígitos!", id: usedPrefix + "serbot --code" },
 { header: "🤖 Ser Bot (qr)", title: "🔓 Para: Todos", description: "Forma estándar de ser bot con código QR", id: usedPrefix + "serbot" },
 { header: "🚄 Velocidad", title: "🔓 Para: Todos", description: "Seleccione esto si desea saber el ping del Bot", id: usedPrefix + "ping" },
-{ header: "🀄 Estado", title: "🔓 Para: Todos", description: "Conoce en que estado se encuentra KatashiBot", id: usedPrefix + "estado" }
+{ header: "🀄 Estado", title: "🔓 Para: Todos", description: "Conoce en que estado se encuentra BrolyBot", id: usedPrefix + "estado" }
 ]},
 { title: "Ⓜ️ Menú", highlight_label: "Popular",
 rows: [
@@ -166,7 +166,7 @@ await conn.sendFile(m.chat, pp, 'katashi.mp4', katashi, fkontak, false, { contex
 await conn.relayMessage(m.chat, { viewOnceMessage: { message } }, {})
       
 } else { 
-let menu = `╭═══〘卐 _Katashi bot MD_ 卐〙═══⊷❍
+let menu = `╭═══〘卐 _Broly bot MD_ 卐〙═══⊷❍
 ┃ ${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.genero == 'Ocultado 🕶️' ? `🕶️` : user.genero == 'Mujer 🚺' ? `🚺` : user.genero == 'Hombre 🚹' ? `🚹` : '👤'} ${user.registered === true ? user.name : taguser} 💖*
 
 ┃☭│ \`\`\`${horarioFecha}\`\`\`
@@ -190,7 +190,7 @@ let menu = `╭═══〘卐 _Katashi bot MD_ 卐〙═══⊷❍
 ┃☭│ _*Pasatiempo(s)*_ ➺ ${user.pasatiempo === 0 ? '*Sin Registro*' : user.pasatiempo + '\n'}
 ┃☭│ _*Experiencia ➟* ${exp} ⚡_
 ┃☭│ _*Diamantes ➟* ${limit} 💎_
-┃☭│ _*KataCoins ➟* ${money} 🪙_
+┃☭│ _*BrolyCoins ➟* ${money} 🪙_
 ┃☭│ _*Tokens ➟* ${joincount} 🀄_
 
 *╭═〘卐 🥷 OPCIONES DE MENU 🥷 〙═⊷❍*
