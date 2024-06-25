@@ -56,19 +56,19 @@ apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - 
 // Parámetros editables
 
 // REFERENCIA
-"wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/katashi.sh | bash"
+"wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/Broly.sh | bash"
 
 // PARÁMETROS QUE PUEDE SER MODIFICADOS --> "[...]"
-"wget -O - https://raw.githubusercontent.com/[usuario]/[repositorio]/[rama]/katashi.sh | bash"
+"wget -O - https://raw.githubusercontent.com/[usuario]/[repositorio]/[rama]/Broly.sh | bash"
 ```
-#### MODIFICAR ARCHIVO [`katashi.sh`](https://github.com/KatashiFukushima/KatashiBot-MD/blob/master/kata.sh)
+#### MODIFICAR ARCHIVO [`katashi.sh`](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/Broly.sh)
 ```js
 //LÍNEAS A MODIFICAR
 205 --> "git clone https://github.com/[user]/[repositorio].git"
-//Ejemplo: git clone https://github.com/KatashiFukushima/KatashiBot-MD.git
+//Ejemplo: git clone https://github.com/AngelPeruFachero/Broly-Bot-MD.git
 
 209 --> "cd [repositorio]"
-//Ejemplo: cd KatashiBot-MD
+//Ejemplo: cd Broly-Bot-MD
 
 //Una vez hecho estos cambios ejecute los nuevos comandos en Termux
 ```
@@ -90,10 +90,10 @@ apt upgrade
 pkg install -y git nodejs ffmpeg imagemagick yarn
 ```
 ```bash
-git clone https://github.com/KatashiFukushima/KatashiBot-MD
+git clone https://github.com/AngelPeruFachero/Broly-Bot-MD
 ```
 ```bash
-cd KatashiBot-MD
+cd Broly-Bot-MD
 ```
 ```bash
 yarn install
@@ -110,7 +110,7 @@ npm start
   
 ### 📁 (OPCIÓN 3) INSTALACIÓN POR TERMUX - ARCHIVOS
 > **Note** Descargué y Descomprime
-### [`KatashiBot-MD ~ Archivos`](https://github.com/KatashiFukushima/KatashiBot-MD/archive/refs/heads/master.zip)
+### [`Broly-Bot-MD ~ Archivos`](https://github.com/AngelPeruFachero/Broly-Bot-MD/archive/refs/heads/master.zip)
 [![blog](https://img.shields.io/badge/NO_TUTORIAL-FF0000?style=for-the-badge&logo=youtube&logoColor=white)
 ](https://www.youtube.com/shorts/ZLJYDUM6vSY)
 ```bash
@@ -118,19 +118,19 @@ termux-setup-storage
 apt update
 apt upgrade
 pkg install -y git nodejs ffmpeg imagemagick yarn
-cd storage/downloads/KatashiBot-MD-master/KatashiBot-MD-master 
+cd storage/downloads/Broly-Bot-MD-master/Broly-Bot-MD-master 
 yarn install
 npm install
 npm start
 ```
 * #### APLICACIÓN RECOMENDADA PARA [`DESCOMPRIMIR`](https://play.google.com/store/apps/details?id=com.rarlab.rar)
 * #### APLICACIÓN RECOMENDADA PARA EDITAR [`NÚMERO DE OWNER`](https://play.google.com/store/apps/details?id=com.rhmsoft.code)
-> **Note** Guardar los archivos en la ubicación: storage/downloads/KatashiBot-MD-master/KatashiBot-MD-master   
+> **Note** Guardar los archivos en la ubicación: storage/downloads/Broly-Bot-MD-master/Broly-Bot-MD-master   
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 <p align="center">
   
 ### 🚀 USAR KATASHIBOT 24/7 EN TERMUX 
-> Ejecutar estos comandos dentro de la carpeta KatashiBot-MD
+> Ejecutar estos comandos dentro de la carpeta Broly-Bot-MD
 ```bash
 termux-wake-lock && npm i -g pm2 && pm2 start index.js && pm2 save && pm2 logs 
 ``` 
@@ -154,10 +154,10 @@ pm2 start index
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 <p align="center">
   
-### 🥷🏻 ACTUALIZAR KATASHIBOT
+### 🌟 ACTUALIZAR BROLYBOT
 > **Note** Comandos para actualizar KatashiBot-MD de forma automática
 ```bash
-grep -q 'bash\|wget' <(dpkg -l) || apt install -y bash wget && wget -O - https://raw.githubusercontent.com/KatashiFukushima/KatashiBot-MD/master/update.sh | bash 
+grep -q 'bash\|wget' <(dpkg -l) || apt install -y bash wget && wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/update.sh | bash 
 ```
 #### Para que no pierda su progreso en Broly-Bot, estos comandos realizarán un respaldo de su `database.json` y se agregará a la versión más reciente.
 > **Warning** Estos comandos solo funcionan para TERMUX, REPLIT, LINUX                           
