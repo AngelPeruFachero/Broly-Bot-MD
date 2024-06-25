@@ -159,18 +159,18 @@ pm2 start index
 ```bash
 grep -q 'bash\|wget' <(dpkg -l) || apt install -y bash wget && wget -O - https://raw.githubusercontent.com/KatashiFukushima/KatashiBot-MD/master/update.sh | bash 
 ```
-#### Para que no pierda su progreso en KatashiBot, estos comandos realizarán un respaldo de su `database.json` y se agregará a la versión más reciente.
+#### Para que no pierda su progreso en Broly-Bot, estos comandos realizarán un respaldo de su `database.json` y se agregará a la versión más reciente.
 > **Warning** Estos comandos solo funcionan para TERMUX, REPLIT, LINUX                           
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 <p align="center">
 
 
-> Recuerda leer la **[Política de KatashiBot. 🥷](https://github.com/KatashiFukushima/KatashiBot-MD/blob/master/terms.md)** antes de hacer algo con este repositorio. 
+> Recuerda leer la **[Política de Broly-Bot. 🌟](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/terms.md)** antes de hacer algo con este repositorio. 
   
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 <p align="center">
   
-### 💠 [`IDIOMAS DISPONIBLES PARA KATASHIBOT`](https://github.com/KatashiFukushima/KatashiBot-MD/blob/master/config.js) 
+### 💠 [`IDIOMAS DISPONIBLES PARA BROLYBOT`](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/config.js) 
 #### 🌐 Español  
 #### 🌐 Inglés (English) 
 #### 🌐 Portugués (Português)
@@ -183,8 +183,8 @@ grep -q 'bash\|wget' <(dpkg -l) || apt install -y bash wget && wget -O - https:/
 <p align="center">
 
 ### 🌟 DESARROLLADORES
-<a href="https://github.com/KatashiFukushima/KatashiBot-MD/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=KatashiFukushima/KatashiBot-MD" /> 
+<a href="https://github.com/AngelPeruFachero/Broly-Bot-MD/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=AngelPeruFachero/Broly-Bot-MD" /> 
 </a>
 
 ### 🌟 AGRADECIMIENTOS
