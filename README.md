@@ -1,4 +1,4 @@
-# KatashiBot-MD
+# Broly-Bot-MD
 > <b>🚀 VERSIÓN 3.0</b>
 
 <p align="center"> 
