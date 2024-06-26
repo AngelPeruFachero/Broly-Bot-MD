@@ -165,6 +165,31 @@ grep -q 'bash\|wget' <(dpkg -l) || apt install -y bash wget && wget -O - https:/
 <p align="center">
 
 
+
+### ⚡ REPLIT - BROLYBOT
+[![blog](https://img.shields.io/badge/Replit-BrolyBotMD-FF0000?style=for-the-badge&logo=youtube&logoColor=white)
+](https://youtu.be/)
+
+
+<a target="_blank" href="https://replit.com/github/AngelPeruFachero/Broly-Bot-MD"><img alt="Run on Replit" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg"></a> <a href="https://replit.com/github/AngelPeruFachero/Broly-Bot-MD"> <img src="https://media0.giphy.com/media/lMwu8EJAnv9kmn51KQ/giphy.gif" height="29px"></a>
+
+
+- [x] Configuración <details><summary>Importar Repositorio - Broly-Bot-MD</summary><img src="https://i.imgur.com/GQyRnMf.jpg"></details>
+
+### ⚡ BROLYBOT-FlarexClud
+
+- Pagina Web: https://www.flarex.cloud
+- Tutorial: *en proceso*
+- Área de Pagos: https://billing.flarex.cloud
+- Game Panel: https://gamepanel.flarex.cloud
+- Contacto: hi@flarex.cloud / support@flarex.cloud / partnerships@flarex.cloud
+- Discord: https://discord.flarex.cloud
+
+
+<a href="https://www.flarex.cloud"><img src="https://cdn.flarex.cloud/deploy.png" height="60px"></a>
+
+
+
 > Recuerda leer la **[Política de Broly-Bot. 🌟](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/terms.md)** antes de hacer algo con este repositorio. 
   
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
