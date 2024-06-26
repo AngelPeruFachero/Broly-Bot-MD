@@ -1,15 +1,15 @@
 let handler = async (m, { conn, command, usedPrefix }) => {
 let pp = `https://telegra.ph/file/f5580f6fcacfe726d7cd4.jpg`
 let stafftxt = `💫 *EQUIPO STAFF*
-🥷 *Bot:* ${gt}
+⚡ *Bot:* ${gt}
 ☁️ *Versión:* ${vs}
 
 👑 『 *Propietario:* 』 👑
 
-• *KatashiFukushima*
+• *AngelPeruFachero*
 🔰 *Rol:* Propietario
 📲 *Número:* ${nomorown}
-🧲 *GitHub:* https://github.com/KatashiFukushima
+🧲 *GitHub:* https://github.com/AngelPeruFachero 
 
 💫 *Colaboradores:*
 
@@ -33,7 +33,7 @@ let stafftxt = `💫 *EQUIPO STAFF*
 📲 *Número:* Wa.me/59169082575
 🧲 *GitHub:* https://github.com/Alba070503
 
-_*Todos nosotros somos parte de KatashiBot.*_ 
+_*Todos nosotros somos parte de Broly-Bot.*_ 
 > Agradecemos el uso que le das al bot y puedes comunicarte con cualquiera de nosotros si necesitas ayuda o soporte sobre el bot o el servidor que usamos para hacer posible la activad de nuestro Bot.`
 await conn.sendFile(m.chat, pp, 'cb.jpg', stafftxt.trim(), fkontak, true, {
 contextInfo: {
@@ -42,7 +42,7 @@ contextInfo: {
 externalAdReply: {
 showAdAttribution: true,
 renderLargerThumbnail: false,
-title: `🥷 Developer 👑`,
+title: `〽️ Developer 👑`,
 body: `💭 Staff Oficial`,
 mediaType: 1,
 sourceUrl: accountsgb,
