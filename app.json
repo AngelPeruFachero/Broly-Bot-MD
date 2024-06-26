@@ -1,10 +1,10 @@
 {
-"name": "KatashiBot-MD",
-"website": "https://github.com/KatashiFukushima",
+"name": "aBroly-Bot-MD",
+"website": "https://github.com/AngelPeruFachero",
 "description": "Super Bot WhatsApp",
-"repository": "https://github.com/KatashiFukushima/KatashiBot-MD",
+"repository": "https://github.com/AngelPeruFachero/Broly-Bot-MD",
 "logo": "https://telegra.ph/file/0d2e58ec6944872fea0f4.jpg",
-"success_url": "https://github.com/KatashiFukushima/KatashiBot-MD",
+"success_url": "https://github.com/AngelPeruFachero/Broly-Bot-MD",
 "keywords": [
 "nodejs", "heroku", "bot", "spanish", "english", "indonesian", "arab", "portuguese", "italian", "french", "whatsapp",
 "termux", "superbot", "multi-device", "md", "official", "javascript", "katashibot"],
