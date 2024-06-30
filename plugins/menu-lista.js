@@ -104,7 +104,7 @@ let menu = `
 ┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
 *╚═══❖•ೋ°
 ╭════〘卐 _INFO BROLY BOT_ 卐〙════⊷❍
-┃
+┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
 ┃ඬ⃟ ✨ \`\`\`${horarioFecha}\`\`\`
 ┃ඬ⃟ ✨ *${lenguajeGB['smsTotalUsers']()}* ➺ _${Object.keys(global.db.data.users).length}_ 
 ┃ඬ⃟ ✨ *Registrados »* ${rtotalreg}/${totalreg}    
@@ -115,19 +115,19 @@ let menu = `
 ┃ඬ⃟ ✨ *${lenguajeGB['smsBanUsers']()}* ➺ _${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_ ${(conn.user.jid == global.conn.user.jid ? '' : `\n⎔ *SOY SUB BOT DE: https://wa.me/${global.conn.user.jid.split`@`[0]}*`) || ''}
 
 ╭════〘卐 _INFO DEL USER_ 卐〙════⊷❍
-┃
+┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
 ┃☭│ *Tipo de registro »* ${user.registered === true ? `_${user.registroC === true ? 'Registro Completo 🗂️' : 'Registro Rápido 📑'}_` : '❌ _Sin registro_'}
-┃☭│ *Mi estado »* ${typeof user.miestado !== 'string' ? '❌ _' + usedPrefix + 'miestado_' : '_Me siento ' + user.miestado + '_'}
-┃☭│ *Registrado »* ${user.registered === true ? '✅' : '❌ _' + usedPrefix + 'verificar_'}
-┃☭│ *${lenguajeGB['smsBotonM7']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM7']().slice(1).toLowerCase()} »* ${user.premiumTime > 0 ? '✅' : '❌ _' + usedPrefix + 'pase premium_'}
-┃☭│ *${lenguajeGB['smsBotonM5']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM5']().slice(1).toLowerCase()} »* ${role}
-┃☭│ *${lenguajeGB['smsBotonM6']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM6']().slice(1).toLowerCase()} »* ${emoji} || ${user.exp - min}/${xp}
-┃☭│ *${lenguajeGB['smsPareja']()}* ${pareja ? `\n*»* ${name} 💕 ${conn.getName(pareja)}` : `🛐 ${lenguajeGB['smsResultPareja']()}`}
-┃☭│ *Pasatiempo(s)* ➺ ${user.pasatiempo === 0 ? '*Sin Registro*' : user.pasatiempo + '\n'}
-┃☭│ *Experiencia ➟* ${exp} ⚡
-┃☭│ *Diamantes ➟* ${limit} 💎
-┃☭│ *BrolyCoins ➟* ${money} 🪙
-┃☭│ *Tokens ➟* ${joincount} 🀄`.trim()
+┃ඬ⃟ ⚡ *Mi estado »* ${typeof user.miestado !== 'string' ? '❌ _' + usedPrefix + 'miestado_' : '_Me siento ' + user.miestado + '_'}
+┃ඬ⃟ ⚡ *Registrado »* ${user.registered === true ? '✅' : '❌ _' + usedPrefix + 'verificar_'}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsBotonM7']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM7']().slice(1).toLowerCase()} »* ${user.premiumTime > 0 ? '✅' : '❌ _' + usedPrefix + 'pase premium_'}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsBotonM5']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM5']().slice(1).toLowerCase()} »* ${role}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsBotonM6']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM6']().slice(1).toLowerCase()} »* ${emoji} || ${user.exp - min}/${xp}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsPareja']()}* ${pareja ? `\n*»* ${name} 💕 ${conn.getName(pareja)}` : `🛐 ${lenguajeGB['smsResultPareja']()}`}
+┃ඬ⃟ ⚡ *Pasatiempo(s)* ➺ ${user.pasatiempo === 0 ? '*Sin Registro*' : user.pasatiempo + '\n'}
+┃ඬ⃟ ⚡ *Experiencia ➟* ${exp} ⚡
+┃ඬ⃟ ⚡ *Diamantes ➟* ${limit} 💎
+┃ඬ⃟ ⚡ *BrolyCoins ➟* ${money} 🪙
+┃ඬ⃟ ⚡ *Tokens ➟* ${joincount} 🀄`.trim()
       
 const buttonParamsJson = JSON.stringify({
 title: "VER LISTA DE BROLY-BOT-MD",
