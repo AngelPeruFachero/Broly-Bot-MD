@@ -419,7 +419,7 @@ unlinkSync(filePath)})
 
 function purgeSession() {
 let prekey = []
-let directorio = readdirSync("./KatashiBotSession")
+let directorio = readdirSync("./BrolyBotSession")
 let filesFolderPreKeys = directorio.filter(file => {
 return file.startsWith('pre-key-')
 })
@@ -435,7 +435,7 @@ const listaDirectorios = readdirSync('./BrolyJadiBot/');
 let SBprekey = [];
 listaDirectorios.forEach(directorio => {
 if (statSync(`./BrolyJadiBot/${directorio}`).isDirectory()) {
-const DSBPreKeys = readdirSync(`./KatashiJadiBot/${directorio}`).filter(fileInDir => {
+const DSBPreKeys = readdirSync(`./BrolyJadiBot/${directorio}`).filter(fileInDir => {
 return fileInDir.startsWith('pre-key-')
 })
 SBprekey = [...SBprekey, ...DSBPreKeys];
