@@ -89,21 +89,21 @@ const horarioFecha = lugarFecha.format('dddd, DD [de] MMMM [del] YYYY || HH:mm A
 
 if (!/web|desktop|unknown/gi.test(dispositivo)) {  
 let menu = `
-╭═══〘卐 _Broly bot MD_ 卐〙═══⊷❍
+*╔══❖•ೋ°𝐁𝐑𝐎𝐋𝐘-𝐁𝐎𝐓-𝐌𝐃ೋ•❖═══╗*
 ┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
 ┃ඬ⃟ 🌵 〘 卐 _ᴏᴡɴᴇʀs ᴏғᴄ_ 卐 〙
 ┃ඬ⃟ 🌵 
-┃ඬ⃟ 🌵 _ᴋᴀᴛᴀsʜɪ ғᴜᴋᴜsʜɪᴍᴀ 🥷🏻_
-┃ඬ⃟ 🌵 _ɪᴢɪ_ 𝅙
-┃ඬ⃟ 🌵 シWɪʟsᴏɴシ︎
+┃ඬ⃟ 🌵 _𝐀𝐧𝐠𝐞𝐥 𝐅𝐚𝐜𝐡𝐞𝐫𝐨 🥷🏻_
+┃ඬ⃟ 🌵  𝅙
+┃ඬ⃟ 🌵
 ┃ඬ⃟ 🌵
 ┃ඬ⃟ 🌵  ║▌│█║▌│█║▌│█│║▌║
 ┃ඬ⃟ 🌵  ║▌│█║▌│█║▌│█│║▌║
 ┃ඬ⃟ 🌵ᴋᴀᴛᴀsʜɪ ʙᴏᴛ x ᴋᴀᴛᴀsʜɪ ғᴜᴋᴜsʜɪᴍᴀ
 ┃ඬ⃟ 🌵 
 ┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
-*╚═══❖•ೋ°
-╭════〘卐 _INFO BROLY BOT_ 卐〙════⊷❍
+*╚═══❖•ೋ°          °ೋ•❖═══╝*
+*╔══❖•ೋ_𝐈𝐍𝐅𝐎 - 𝐁𝐑𝐎𝐋𝐘_ೋ•❖═══╗*
 ┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
 ┃ඬ⃟ ✨ \`\`\`${horarioFecha}\`\`\`
 ┃ඬ⃟ ✨ *${lenguajeGB['smsTotalUsers']()}* ➺ _${Object.keys(global.db.data.users).length}_ 
@@ -114,7 +114,7 @@ let menu = `
 ┃ඬ⃟ ✨ *${lenguajeGB['smsBanChats']()}* ➺ _${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_ 
 ┃ඬ⃟ ✨ *${lenguajeGB['smsBanUsers']()}* ➺ _${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_ ${(conn.user.jid == global.conn.user.jid ? '' : `\n⎔ *SOY SUB BOT DE: https://wa.me/${global.conn.user.jid.split`@`[0]}*`) || ''}
 
-╭════〘卐 _INFO DEL USER_ 卐〙════⊷❍
+*╔══❖•ೋ°_𝐈𝐍𝐅𝐎 - 𝐔𝐒𝐄𝐑_ೋ•❖═══╗*
 ┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
 ┃☭│ *Tipo de registro »* ${user.registered === true ? `_${user.registroC === true ? 'Registro Completo 🗂️' : 'Registro Rápido 📑'}_` : '❌ _Sin registro_'}
 ┃ඬ⃟ ⚡ *Mi estado »* ${typeof user.miestado !== 'string' ? '❌ _' + usedPrefix + 'miestado_' : '_Me siento ' + user.miestado + '_'}
