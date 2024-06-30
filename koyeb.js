@@ -7,9 +7,9 @@ RUN sudo dnf -y update &&\
 
 RUN git clone https://github.com/KatashiFukushima/KatashiBot-MD
 
-WORKDIR /root/KatashiBot-MD
+WORKDIR /root/Broky-Bot-MD
 
-COPY ./root/KatashiBot-MD
+COPY ./root/Broly-Bot-MD
 
 RUN yarn install
 
