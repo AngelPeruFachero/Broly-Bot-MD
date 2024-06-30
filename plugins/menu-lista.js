@@ -90,7 +90,7 @@ const horarioFecha = lugarFecha.format('dddd, DD [de] MMMM [del] YYYY || HH:mm A
 if (!/web|desktop|unknown/gi.test(dispositivo)) {  
 let menu = `
 ╭═══〘卐 _Broly bot MD_ 卐〙═══⊷❍
-┃☭╭──────────────
+┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
 ┃ඬ⃟ 🌵 〘 卐 _ᴏᴡɴᴇʀs ᴏғᴄ_ 卐 〙
 ┃ඬ⃟ 🌵 
 ┃ඬ⃟ 🌵 _ᴋᴀᴛᴀsʜɪ ғᴜᴋᴜsʜɪᴍᴀ 🥷🏻_
@@ -101,18 +101,18 @@ let menu = `
 ┃ඬ⃟ 🌵  ║▌│█║▌│█║▌│█│║▌║
 ┃ඬ⃟ 🌵ᴋᴀᴛᴀsʜɪ ʙᴏᴛ x ᴋᴀᴛᴀsʜɪ ғᴜᴋᴜsʜɪᴍᴀ
 ┃ඬ⃟ 🌵 
-┃☭╰───────────────
-╰═════════════════⊷
+┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
+*╚═══❖•ೋ°
 ╭════〘卐 _INFO BROLY BOT_ 卐〙════⊷❍
 ┃
-┃☭│ ᩭ✎ \`\`\`${horarioFecha}\`\`\`
-┃☭│ ᩭ✎ *${lenguajeGB['smsTotalUsers']()}* ➺ _${Object.keys(global.db.data.users).length}_ 
-┃☭│ ᩭ✎ *Registrados »* ${rtotalreg}/${totalreg}    
-┃☭│ ᩭ✎ *${lenguajeGB['smsUptime']()}* ➺ _${uptime}_ 
-┃☭│ ᩭ✎ *${lenguajeGB['smsVersion']()}* ➺ _${vs}_
-┃☭│ ᩭ✎ *${lenguajeGB['smsMode']()} ➺* _${global.opts['self'] ? `${lenguajeGB['smsModePrivate']().charAt(0).toUpperCase() + lenguajeGB['smsModePrivate']().slice(1).toLowerCase()}` : `${lenguajeGB['smsModePublic']().charAt(0).toUpperCase() + lenguajeGB['smsModePublic']().slice(1).toLowerCase()}`}_
-┃☭│ ᩭ✎ *${lenguajeGB['smsBanChats']()}* ➺ _${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_ 
-┃☭│ ᩭ✎ *${lenguajeGB['smsBanUsers']()}* ➺ _${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_ ${(conn.user.jid == global.conn.user.jid ? '' : `\n⎔ *SOY SUB BOT DE: https://wa.me/${global.conn.user.jid.split`@`[0]}*`) || ''}
+┃ඬ⃟ ✨ \`\`\`${horarioFecha}\`\`\`
+┃ඬ⃟ ✨ *${lenguajeGB['smsTotalUsers']()}* ➺ _${Object.keys(global.db.data.users).length}_ 
+┃ඬ⃟ ✨ *Registrados »* ${rtotalreg}/${totalreg}    
+┃ඬ⃟ ✨ *${lenguajeGB['smsUptime']()}* ➺ _${uptime}_ 
+┃ඬ⃟ ✨ *${lenguajeGB['smsVersion']()}* ➺ _${vs}_
+┃ඬ⃟ ✨ *${lenguajeGB['smsMode']()} ➺* _${global.opts['self'] ? `${lenguajeGB['smsModePrivate']().charAt(0).toUpperCase() + lenguajeGB['smsModePrivate']().slice(1).toLowerCase()}` : `${lenguajeGB['smsModePublic']().charAt(0).toUpperCase() + lenguajeGB['smsModePublic']().slice(1).toLowerCase()}`}_
+┃ඬ⃟ ✨ *${lenguajeGB['smsBanChats']()}* ➺ _${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_ 
+┃ඬ⃟ ✨ *${lenguajeGB['smsBanUsers']()}* ➺ _${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_ ${(conn.user.jid == global.conn.user.jid ? '' : `\n⎔ *SOY SUB BOT DE: https://wa.me/${global.conn.user.jid.split`@`[0]}*`) || ''}
 
 ╭════〘卐 _INFO DEL USER_ 卐〙════⊷❍
 ┃
