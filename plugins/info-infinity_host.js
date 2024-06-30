@@ -2,7 +2,7 @@ let handler = async (m, { conn, command, usedPrefix }) => {
 let infinitytxt = `
 *Optimice la implementación de *KatashiBot* mediante la integración en un servicio de alojamiento de alto rendimiento.*
 
-*🥷 Compatible con KatashiBot*
+*🌟 Compatible con Broly-Bot*
 Aprovecha la compatibilidad y comienza usar KatashiBot en servidores de alto rendimiento. El Staff de KatashiBot y InfinityHost hacen posible que puedas ejecutar las funciones que tanto te gusta usar sintiendo una experiencia fluida y de calidad.
 
 🔵 \`\`\`Información del Host\`\`\`
@@ -22,8 +22,8 @@ https://chat.whatsapp.com/J7DTlOOCuEhJS7CW6OSINJ
 📧 *Correo*
 katashifukushima23@gmail.com
 
-🧑‍💻 *Contacto (Katashi Fukushima)*
-https://wa.me/51948705559
+🧑‍💻 *Contacto (AngelPeruFachero)*
+https://wa.me/51982110760
 `
 await conn.sendFile(m.chat, 'https://telegra.ph/file/5bfb99ebc653ff9c24120.jpg', 'fantasy.jpg', infinitytxt.trim(), fkontak, true, {
 contextInfo: {
