@@ -158,7 +158,7 @@ rows: [
 const interactiveMessage = {
 body: { text: menu },
 footer: { text: wm + ` \nSi algo no funciona utilice el comando *${usedPrefix}menu2*` },
-header: { title: `⭐ *------- NUEVO MENÚ -------* ⭐\n${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.genero == 'Ocultado 🕶️' ? `🕶️` : user.genero == 'Mujer 🚺' ? `🚺` : user.genero == 'Hombre 🚹' ? `🚹` : '👤'} ${user.registered === true ? user.name : taguser} 💖*`, subtitle: "test4", hasMediaAttachment: false },
+header: { title: `⭐ 𝗠𝗘𝗡𝗨 𝗕𝗥𝗢𝗟𝗬 - 𝗕𝗢𝗧 ⭐\n${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.genero == 'Ocultado 🕶️' ? `🕶️` : user.genero == 'Mujer 🚺' ? `🚺` : user.genero == 'Hombre 🚹' ? `🚹` : '👤'} ${user.registered === true ? user.name : taguser} 💖*`, subtitle: "test4", hasMediaAttachment: false },
 nativeFlowMessage: { buttons: [{ 
 name: "single_select",
 buttonParamsJson
@@ -166,7 +166,7 @@ buttonParamsJson
 }}
 let katashi = `𝗘𝗟 𝗠𝗘𝗡𝗨 𝗦𝗢𝗟𝗜𝗖𝗜𝗧𝗔𝗗𝗢 𝗘𝗦 𝗩𝗜𝗦𝗜𝗕𝗟𝗘 𝗨𝗡𝗜𝗖𝗔𝗠𝗘𝗡𝗧𝗘 𝗣𝗔𝗥𝗔 𝗨𝗦𝗨𝗔𝗥𝗜𝗢𝗦 𝗖𝗢𝗡 𝗗𝗜𝗦𝗣𝗢𝗦𝗜𝗧𝗜𝗩𝗢𝗦 𝗔𝗡𝗗𝗥𝗢𝗜𝗗.`.trim()
 const message = { messageContextInfo: { deviceListMetadata: {}, deviceListMetadataVersion: 2 }, interactiveMessage }
-await conn.sendFile(m.chat, pp, 'katashi.mp4', katashi, fkontak, false, { contextInfo: {mentionedJid, externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 🥷 𝗦𝘂𝗽𝗲𝗿 𝗞𝗮𝘁𝗮𝘀𝗵𝗶𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', previewType: 0, thumbnail: imagen4, sourceUrl: redesMenu}}})
+await conn.sendFile(m.chat, pp, 'katashi.mp4', katashi, fkontak, false, { contextInfo: {mentionedJid, externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 💥 𝗦𝘂𝗽𝗲𝗿 𝗕𝗿𝗼𝗹𝘆-𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', previewType: 0, thumbnail: imagen4, sourceUrl: redesMenu}}})
 await conn.relayMessage(m.chat, { viewOnceMessage: { message } }, {})
       
 } else { 
