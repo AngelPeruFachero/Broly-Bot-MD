@@ -93,7 +93,7 @@ let menu = `
 ┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
 ┃ඬ⃟ 🌵 〘 卐 _𝑶𝑾𝑵𝑬𝑹 𝑶𝑭𝑪_ 卐 〙
 ┃ඬ⃟ 🌵 
-┃ඬ⃟ 🌵 _𝐀𝐧𝐠𝐞𝐥 𝐅𝐚𝐜𝐡𝐞𝐫𝐨 🥷🏻_
+┃ඬ⃟ 🌵 _𝐀𝐧𝐠𝐞𝐥 𝐅𝐚𝐜𝐡𝐞𝐫𝐨 💥💫_
 ┃ඬ⃟ 🌵  𝅙
 ┃ඬ⃟ 🌵
 ┃ඬ⃟ 🌵
@@ -152,7 +152,7 @@ rows: [
 ]},
 { title: "Ⓜ️ Menú", highlight_label: "Popular",
 rows: [
-{ header: "⭐ Menú completo", title: "", description: "Visita todos los comandos", id: usedPrefix + "allmenu" }
+{ header: "⭐ Menú completo", title: "", description: "Visita todos los comandos de BrolyBot", id: usedPrefix + "allmenu" }
 ]}
 ]})
 const interactiveMessage = {
