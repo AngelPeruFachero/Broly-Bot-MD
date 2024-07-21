@@ -80,11 +80,11 @@ let enlace = { contextInfo: { externalAdReply: {title: wm + ' 💥', body: 'supp
 let enlace2 = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: yt, mediaType: 'VIDEO', description: '', title: wm, body: '💥 𝗦𝘂𝗽𝗲𝗿 𝗕𝗿𝗼𝗹𝘆 - 𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', thumbnailUrl: gataMenu, sourceUrl: accountsgb }}}
 let dos = [enlace, enlace2]  
 
-global.wait = "⌛ *`Cargando...`*\n*✪✦✦⊹⊹⊹⊹⊹⊹⊹⊹✪* `20%`"
-global.waitt = "⏳ *`Cargando....`*\n*✪✦✦✦✦⊹⊹⊹⊹⊹⊹✪* `40%`"
-global.waittt = "⌛ *`Cargando...`*\n*✪✦✦✦✦✦✦⊹⊹⊹⊹✪* `60%`"
-global.waitttt = "⏳ *`Cargando....`*\n*✪✦✦✦✦✦✦✦✦⊹⊹✪* `80%`"
-global.waittttt = "⌛ *`Procesando...`*\n*✪✦✦✦✦✦✦✦✦✦✦✪* `100%`"
+global.wait = "🔄 *`Cargando...`*\n*🌀🌀🌀🌀🌀🌀🌀🔆* `20%`"
+global.waitt = "🔄 *`Cargando....`*\n*🌀🌀🌀🌀🌀🌀🔆🔆* `40%`"
+global.waittt = "🔄 *`Cargando...`*\n*🌀🌀🌀🌀🌀🔆🔆🔆* `60%`"
+global.waitttt = "🔄 *`Cargando....`*\n*🌀🌀🌀🌀🔆🔆🔆🔆* `80%`"
+global.waittttt = "🔄 *`Procesando...`*\n*🌀🌀🌀🔆🔆🔆🔆🔆* `100%`"
 
 global.destraba = `⏰DESTRABA⏰*
 li.DESTRAVip.to
