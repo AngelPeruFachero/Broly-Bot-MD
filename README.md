@@ -35,7 +35,7 @@
 ### Cuentas Oficiales:
 > Al acceder a la plataforma, obtendrás acceso a todos los enlaces oficiales de Katashi Fukushima. Además, te mantendremos informado con boletines y mensajes exclusivos sobre las últimas novedades. La página se actualiza constantemente para ofrecerte la información más relevante. ¡No te pierdas ninguna actualización y únete a nuestro canal ahora mismo!
 
-<a href="https://www.atom.bio/katashifukushima">
+<a href="https://www.atom.bio/brolybot/">
 <img src="https://img.shields.io/badge/Redes_Sociales-000000%7D?style=for-the-badge&logo=biolink&logoColor=white">
 </a>
 
@@ -49,17 +49,17 @@
 termux-setup-storage
 ```
 ```bash
-apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/Broly.sh | bash
+apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/broly.sh | bash
 ```
 ```js
 // PERSONALIZAR INSTALACIÓN AUTOMÁTICA (En caso de una Bifurcación)
 // Parámetros editables
 
 // REFERENCIA
-"wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/Broly.sh | bash"
+"wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/broly.sh | bash"
 
 // PARÁMETROS QUE PUEDE SER MODIFICADOS --> "[...]"
-"wget -O - https://raw.githubusercontent.com/[usuario]/[repositorio]/[rama]/Broly.sh | bash"
+"wget -O - https://raw.githubusercontent.com/[usuario]/[repositorio]/[rama]/broly.sh | bash"
 ```
 #### MODIFICAR ARCHIVO [`broly.sh`](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/broly.sh)
 ```js
