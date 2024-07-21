@@ -61,7 +61,7 @@ apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - 
 // PARÁMETROS QUE PUEDE SER MODIFICADOS --> "[...]"
 "wget -O - https://raw.githubusercontent.com/[usuario]/[repositorio]/[rama]/Broly.sh | bash"
 ```
-#### MODIFICAR ARCHIVO [`Broly.sh`](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/Broly.sh)
+#### MODIFICAR ARCHIVO [`broly.sh`](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/broly.sh)
 ```js
 //LÍNEAS A MODIFICAR
 205 --> "git clone https://github.com/[user]/[repositorio].git"
