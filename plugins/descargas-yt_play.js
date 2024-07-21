@@ -8,8 +8,6 @@ if (!text) throw `${lenguajeGB['smsAvisoMG']()}${mid.smsMalused4}\n*${usedPrefix
 try { 
 const yt_play = await search(args.join(' '))
 const texto1 = `*𓆩 🌟 𓆪 ✧═══ ${vs} ═══✧ 𓆩 🌟 𓆪*
-
-    const texto1 = `🐺𝗟𝗼𝗯𝗼-𝗕𝗼𝘁-𝗠𝗗🐺
 ☆ 📑 𝐓𝐢𝐭𝐮𝐥𝐨: ${yt_play[0].title}
 ☆ 🎼 𝐃𝐮𝐫𝐚𝐜𝐢𝐨𝐧: ${secondString(yt_play[0].duration.seconds)}
 ☆ 🗓️ 𝐕𝐢𝐬𝐭𝐚𝐬: ${`${MilesNumber(yt_play[0].views)}`}
