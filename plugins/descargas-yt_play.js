@@ -9,11 +9,23 @@ try {
 const yt_play = await search(args.join(' '))
 const texto1 = `*𓆩 🌟 𓆪 ✧═══ ${vs} ═══✧ 𓆩 🌟 𓆪*
 ☆ 📑 𝐓𝐢𝐭𝐮𝐥𝐨: ${yt_play[0].title}
+
+
 ☆ 🎼 𝐃𝐮𝐫𝐚𝐜𝐢𝐨𝐧: ${secondString(yt_play[0].duration.seconds)}
+
+
 ☆ 🗓️ 𝐕𝐢𝐬𝐭𝐚𝐬: ${`${MilesNumber(yt_play[0].views)}`}
+
+
 ☆ 🖋️ 𝐀𝐮𝐭𝐨𝐫: ${yt_play[0].author.name}
+
+
 ☆ 🎞️ 𝐂𝐚𝐧𝐚𝐥: ${yt_play[0].author.url}
+
+
 ☆ 📄 𝐋𝐢𝐧𝐤: ${yt_play[0].url}\n
+
+
 ☆ _ᴇɴᴠɪᴀɴᴅᴏ ᴛɪᴘᴏ ᴅᴇ ᴅᴇsᴄsʀɢᴀs
 
 *𓆩 🌟 𓆪 ✧═══ ${vs} ═══✧ 𓆩 🌟 𓆪*`.trim()
