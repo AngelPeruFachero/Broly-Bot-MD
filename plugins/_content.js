@@ -53,8 +53,8 @@ global.img15 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
 
 global.img16 = 'https://qu.ax/ovkN.jpg' //+18
 
-global.img17 = 'https://qu.ax/H'
-global.img18 = 'https://qu.ax/HCt.jpg'
+global.img17 = 'https://qu.ax/QSXS.jpg'
+global.img18 = 'https://qu.ax/QSXS.jpg'
 
 global.logogit = 'https://qu.ax/RzKF.jpg'
 
