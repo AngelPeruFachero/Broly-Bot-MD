@@ -49,19 +49,19 @@
 termux-setup-storage
 ```
 ```bash
-apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/broly.sh | bash
+apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/Broly.sh | bash
 ```
 ```js
 // PERSONALIZAR INSTALACIÓN AUTOMÁTICA (En caso de una Bifurcación)
 // Parámetros editables
 
 // REFERENCIA
-"wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/broly.sh | bash"
+"wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/Broly.sh | bash"
 
 // PARÁMETROS QUE PUEDE SER MODIFICADOS --> "[...]"
-"wget -O - https://raw.githubusercontent.com/[usuario]/[repositorio]/[rama]/broly.sh | bash"
+"wget -O - https://raw.githubusercontent.com/[usuario]/[repositorio]/[rama]/Broly.sh | bash"
 ```
-#### MODIFICAR ARCHIVO [`broly.sh`](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/broly.sh)
+#### MODIFICAR ARCHIVO [`Broly.sh`](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/Broly.sh)
 ```js
 //LÍNEAS A MODIFICAR
 205 --> "git clone https://github.com/[user]/[repositorio].git"
