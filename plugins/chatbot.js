@@ -7,10 +7,10 @@ let chat = global.db.data.chats[m.chat]
 let name = conn.getName(m.sender)
 if (chat.isBanned) return
 let vn = 'https://qu.ax/jbe.mp3'
-let bot = `${pickRandom([`*¡𝑬𝒚! 𝑨𝒒𝒖í 𝒆𝒔𝒕𝒐𝒚. 𝒀𝒐 𝒑𝒖𝒆𝒅𝒐 𝒂𝒚𝒖𝒅𝒂𝒓 👉👈 𝑯𝒆𝒚! 𝑰'𝒎 𝒉𝒆𝒓𝒆. 𝑰 𝒄𝒂𝒏 𝒉𝒆𝒍𝒑 🙌*`, `Aqui estoy | Here I am 😼`, `*Hola Aqui estoy yo puedo ayudar? | Hello, here I am, can I help? 😸*`])}`.trim()
+let bot = `${pickRandom([`*👉*`, `Aqui estoy | Here I am 😼`, `*Hola Aqui estoy yo puedo ayudar? | Hello, here I am, can I help? 😸*`])}`.trim()
 
 let infinitytxt = `
-_Optimice la implementación de *KatashiBot* mediante la integración en un servicio de alojamiento de alto rendimiento._
+_Optimice la implementación de *BrolyBot* mediante la integración en un servicio de alojamiento de alto rendimiento._
 
 *🥷 Compatible con KatashiBot*
 Aprovecha la compatibilidad y comienza usar KatashiBot en servidores de alto rendimiento. El Staff de KatashiBot y InfinityHost hacen posible que puedas ejecutar las funciones que tanto te gusta usar sintiendo una experiencia fluida y de calidad.
