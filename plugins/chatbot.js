@@ -7,7 +7,7 @@ let chat = global.db.data.chats[m.chat]
 let name = conn.getName(m.sender)
 if (chat.isBanned) return
 let vn = 'https://qu.ax/jbe.mp3'
-let bot = `${pickRandom([`*👉*`, `Aqui estoy | Here I am 😼`, `*Hola Aqui estoy yo puedo ayudar? | Hello, here I am, can I help? 😸*`])}`.trim()
+let bot = `${pickRandom([`*𝗵𝗼𝗹𝗮 𝘀𝗼𝘆 𝗕𝗿𝗼𝗹𝘆-𝗕𝗼𝘁-𝗠𝗗*`, `𝘆𝗼 𝗲𝘀𝘁𝗼𝘆 𝗮𝗾𝘂𝗶́`, `*Hola Aqui estoy yo puedo ayudar? | Hello, here I am, can I help? 😸*`])}`.trim()
 
 let infinitytxt = `
 _Optimice la implementación de *BrolyBot* mediante la integración en un servicio de alojamiento de alto rendimiento._
