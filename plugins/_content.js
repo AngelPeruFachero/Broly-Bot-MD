@@ -32,24 +32,24 @@ global.imagen11 = fs.readFileSync("./media/menus/img10.jpg")
 global.imagen12 = fs.readFileSync("./media/menus/img11.jpg")
 global.imagen13 = fs.readFileSync("./media/menus/img12.jpg")
 
-global.img = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img2 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
+global.img = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img2 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
 
-global.img3 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg' //prem
-global.img4 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg' //prem
+global.img3 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg' //prem
+global.img4 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg' //prem
 
-global.img5 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img6 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img7 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img8 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img9 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
+global.img5 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img6 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img7 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img8 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img9 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
 
-global.img10 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img11 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img12 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img13 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img14 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
-global.img15 = 'https://telegra.ph/file/de0fc4561805262154f98.jpg'
+global.img10 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img11 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img12 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img13 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img14 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
+global.img15 = 'https://telegra.ph/file/04886d9a6c18042577268.jpg'
 
 global.img16 = 'https://qu.ax/ovkN.jpg' //+18
 
