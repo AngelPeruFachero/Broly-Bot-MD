@@ -18,7 +18,7 @@ let username = conn.getName(who)
 let prem = global.prems.includes(who.split`@`[0])
 let sn = createHash('md5').update(who).digest('hex')
 let str =
-`╔══ ⌠𝑲𝒂𝒕𝒂𝒔𝒉𝒊 𝑭𝒖𝒌𝒖𝒔𝒉𝒊𝒎𝒂⌡
+`╔══ ⌠𝐀𝐧𝐠𝐞𝐥 𝐅𝐚𝐜𝐡𝐞𝐫𝐨⌡
 ║ ⍟ 𝑁𝑂𝑀𝐵𝑅𝐸 ${conn.getName(m.sender)} ${user.registered === true ? 'ͧͧͧͦꙶͣͤ✓ᚲᴷᴮ' : ''}
 ╠═════════════════
 ║ 𝑁𝑈𝑀𝐸𝑅𝑂 ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
@@ -33,7 +33,7 @@ let str =
 ╠═════════════════
 ║ ⍟ 𝐼𝐷
 ║ ◢ _*${sn}*_ ◤
-╚══ ⌠𝑲𝒂𝒕𝒂𝒔𝒉𝒊𝑩𝒐𝒕-𝑴𝑫⌡`.trim()
+╚══ ⌠𝐁𝐫𝐨𝐥𝐲-𝐁𝐨𝐭-𝐌𝐃⌡`.trim()
     conn.sendFile(m.chat, pp, 'pp.jpg', str, fkontak, false, { contextInfo: { mentionedJid }}) 
   }
 }
