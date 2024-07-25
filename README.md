@@ -10,7 +10,7 @@
 <p align="center">
 
 <p align="center">
-<img src="https://telegra.ph/file/73a0ed66e59dac42f39da.jpg" alt="@Broly-Bot-MD" width="900"/>
+<img src="https://telegra.ph/file/04886d9a6c18042577268.jpg" alt="@Broly-Bot-MD" width="900"/>
 </p>
 
 > 𝑴𝑼𝑪𝑯𝑨𝑺 𝑮𝑹𝑨𝑪𝑰𝑨𝑺 𝑷𝑶𝑹 𝑷𝑹𝑬𝑭𝑬𝑹𝑰𝑹𝑵𝑶𝑺 😎✨
