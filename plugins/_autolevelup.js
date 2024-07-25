@@ -18,20 +18,20 @@ let before = user.level * 1
 while (canLevelUp(user.level, user.exp, global.multiplier)) user.level++
  if (before !== user.level) {
  
-/*conn.reply(m.chat, `*╭━⊰ ${username} ⊱━დ*
+/*conn.reply(m.chat, `*╔═══❖•ೋ° ${username} °ೋ•❖═══╗*
 *┃ ${lenguajeGB.smsAutoLv2()} ${before}*
 *┃ ${lenguajeGB.smsAutoLv3()} ${user.level}*
 *┃ ${lenguajeGB.smsAutoLv4()}* ${user.role}
 *┃ ${lenguajeGB.smsAutoLv5()} ${new Date().toLocaleString('id-ID')}*
-*╰━⊰ ${lenguajeGB.smsAutoLv1()} ⊱━━დ*
+*╚═══❖•ೋ° ${lenguajeGB.smsAutoLv1()} °ೋ•❖═══╝*
 
 *_${lenguajeGB.smsAutoLv6()}_*`, fkontak, {contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 😻 𝗦𝘂𝗽𝗲𝗿 𝗞𝗮𝘁𝗮𝘀𝗵𝗶𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', previewType: 0, thumbnail: gataImg, sourceUrl: accountsgb }}}) */
-conn.sendButton(m.chat, '🥷 ' + wm, `*╭━⊰ ${username} ⊱━დ*
+conn.sendButton(m.chat, '🥷 ' + wm, `*╔═══❖•ೋ° ${username} °ೋ•❖═══╗**
 *┃ ${lenguajeGB.smsAutoLv2()} ${before}*
 *┃ ${lenguajeGB.smsAutoLv3()} ${user.level}*
 *┃ ${lenguajeGB.smsAutoLv4()}* ${user.role}
 *┃ ${lenguajeGB.smsAutoLv5()} ${new Date().toLocaleString('id-ID')}*
-*╰━⊰ ${lenguajeGB.smsAutoLv1()} ⊱━━დ*
+*╚═══❖•ೋ° ${lenguajeGB.smsAutoLv1()} °ೋ•❖═══╝*
 
 *_${lenguajeGB.smsAutoLv6()}_*`, null, [[lenguajeGB.smsConMenu(), `${usedPrefix}menu`]], null, null, fkontak)
 
