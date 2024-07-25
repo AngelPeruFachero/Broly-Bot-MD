@@ -19,10 +19,12 @@ while (canLevelUp(user.level, user.exp, global.multiplier)) user.level++
  if (before !== user.level) {
  
 /*conn.reply(m.chat, `*╔═══❖•ೋ° ${username} °ೋ•❖═══╗*
-*┃ ${lenguajeGB.smsAutoLv2()} ${before}*
-*┃ ${lenguajeGB.smsAutoLv3()} ${user.level}*
-*┃ ${lenguajeGB.smsAutoLv4()}* ${user.role}
-*┃ ${lenguajeGB.smsAutoLv5()} ${new Date().toLocaleString('id-ID')}*
+*┃ඬ⃟ ✨ ❖ ── ✦ ──『✙』── ✦ ── ❖
+*┃ඬ⃟ ✨ ${lenguajeGB.smsAutoLv2()} ${before}*
+*┃ඬ⃟ ✨ ${lenguajeGB.smsAutoLv3()} ${user.level}*
+*┃ඬ⃟ ✨ ${lenguajeGB.smsAutoLv4()}* ${user.role}
+*┃ඬ⃟ ✨ ${lenguajeGB.smsAutoLv5()} ${new Date().toLocaleString('id-ID')}*
+*┃ඬ⃟ ✨ ❖ ── ✦ ──『✙』── ✦ ── ❖
 *╚═══❖•ೋ° ${lenguajeGB.smsAutoLv1()} °ೋ•❖═══╝*
 
 *_${lenguajeGB.smsAutoLv6()}_*`, fkontak, {contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 💥 𝗦𝘂𝗽𝗲𝗿 𝗕𝗿𝗼𝗹𝘆 - 𝗕𝗼𝘁 - 𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', previewType: 0, thumbnail: gataImg, sourceUrl: accountsgb }}}) */
