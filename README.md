@@ -155,7 +155,7 @@ pm2 start index
 <p align="center">
   
 ### 🌟 ACTUALIZAR BROLYBOT
-> **Note** Comandos para actualizar KatashiBot-MD de forma automática
+> **Note** Comandos para actualizar Broly-Bot-MD de forma automática
 ```bash
 grep -q 'bash\|wget' <(dpkg -l) || apt install -y bash wget && wget -O - https://raw.githubusercontent.com/AngelPeruFachero/Broly-Bot-MD/master/update.sh | bash 
 ```
