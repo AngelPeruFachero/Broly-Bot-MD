@@ -180,7 +180,7 @@ const connectionOptions = {
 logger: pino({ level: 'silent' }),
 printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
-browser: opcion == '1' ? ['KatashiBot-MD', 'Edge', '2.0.0'] : methodCodeQR ? ['KatashiBot-MD', 'Edge', '2.0.0'] : ['Ubuntu', 'Edge', '110.0.1587.56'],
+browser: opcion == '1' ? ['Broly-Bot-MD', 'Edge', '2.0.0'] : methodCodeQR ? ['Broly-Bot-MD', 'Edge', '2.0.0'] : ['Ubuntu', 'Edge', '110.0.1587.56'],
 auth: {
 creds: state.creds,
 keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -445,22 +445,22 @@ unlinkSync(filePath)})
 }
 function purgeSession() {
 let prekey = []
-let directorio = readdirSync("./KatashiBotSession")
+let directorio = readdirSync("./BrolyBotSession")
 let filesFolderPreKeys = directorio.filter(file => {
 return file.startsWith('pre-key-')
 })
 prekey = [...prekey, ...filesFolderPreKeys]
 filesFolderPreKeys.forEach(files => {
-unlinkSync(`./KatashiBotSession/${files}`)
+unlinkSync(`./BrolyBotSession/${files}`)
 })
 } 
 function purgeSessionSB() {
 try {
-const listaDirectorios = readdirSync('./KatashiJadiBot/');
+const listaDirectorios = readdirSync('./BrolyJadiBot/');
 let SBprekey = [];
 listaDirectorios.forEach(directorio => {
-if (statSync(`./KatashiJadiBot/${directorio}`).isDirectory()) {
-const DSBPreKeys = readdirSync(`./KatashiJadiBot/${directorio}`).filter(fileInDir => {
+if (statSync(`./BrolyJadiBot/${directorio}`).isDirectory()) {
+const DSBPreKeys = readdirSync(`./BrolyJadiBot/${directorio}`).filter(fileInDir => {
 return fileInDir.startsWith('pre-key-')
 })
 SBprekey = [...SBprekey, ...DSBPreKeys];
@@ -477,7 +477,7 @@ console.log(chalk.bold.cyanBright(lenguajeGB.smspurgeSessionSB2()))
 console.log(chalk.bold.red(lenguajeGB.smspurgeSessionSB3() + err))
 }}
 function purgeOldFiles() {
-const directories = ['./KatashiBotSession/', './KatashiJadiBot/']
+const directories = ['./BrolyBotSession/', './BrolyJadiBot/']
 directories.forEach(dir => {
 readdirSync(dir, (err, files) => {
 if (err) throw err
