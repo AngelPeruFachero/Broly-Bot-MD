@@ -104,7 +104,7 @@ let str = `*╔═══❖•ೋ° *𝙉𝙄𝙑𝙀𝙇 | 𝙇𝙀𝙑𝙀𝙇
 ┃ඬ⃟ ✨ ❖ ── ✦ ──『✙』── ✦ ── ❖
 *╚═══❖•ೋ° *💥 ${vs}* °ೋ•❖═══╝*
 
-*_Cuanto más interactúes con KatashiBot-MD, mayor será tu nivel!!_*
+*_Cuanto más interactúes con Broly-Bot-MD, mayor será tu nivel!!_*
 *_Actualiza tú rango con el comando ${usedPrefix}rol!!_*`.trim()
 try {
 const img = await levelup(teks, user.level)
