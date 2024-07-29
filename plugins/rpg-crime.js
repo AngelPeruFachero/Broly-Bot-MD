@@ -17,7 +17,7 @@ const money = Math.floor(Math.random() * 9000)
 
 if (global.db.data.users[m.sender].exp < 0) return m.reply(`《💰》${pickRandom(global.robar)} ${exp} XP`).catch(global.db.data.users[m.sender].exp += exp)
 if (global.db.data.users[m.sender].limit < 0) return m.reply(`《💰》${pickRandom(global.robar)} ${diamond} 💎 Diamante`).catch(global.db.data.users[m.sender].limit += diamond)
-if (global.db.data.users[m.sender].money < 0) return m.reply(`《💰》${pickRandom(global.robar)} ${money} 🪙 KataCoins`).catch(global.db.data.users[m.sender].money += money) 
+if (global.db.data.users[m.sender].money < 0) return m.reply(`《💰》${pickRandom(global.robar)} ${money} 🪙 BrolyCoins`).catch(global.db.data.users[m.sender].money += money) 
   
 let or = ['text', 'text2', 'text3', 'text4', 'text5']; 
 let media = or[Math.floor(Math.random() * 5)]
