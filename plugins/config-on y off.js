@@ -48,19 +48,21 @@ rows: [{ title: `${nombre[v]} : ${command} ${comando[v]}`, description: `${1 + i
 let name = await conn.getName(m.sender)
 const listMessage = {
 text: `${lenguajeGB.smsConfi10()}`,
-footer: `╭═〘卐 *${lenguajeGB.smsConfi1()}* ═⊷❍
-┃
-┃🌟 ${lenguajeGB.smsConfi2()} *${name}*
-┃
+footer: `*╔═══❖•ೋ° *${lenguajeGB.smsConfi1()}* °ೋ•❖═══╗*
+┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
+┃ඬ⃟ ✨
+┃ඬ⃟ ✨ ${lenguajeGB.smsConfi2()} *${name}*
+┃ඬ⃟ ✨
 ${lenguajeGB.smsConfi3()}
 ${lenguajeGB.smsConfi4()}
-┃
+┃ඬ⃟ ✨
 ${lenguajeGB.smsConfi5()}
 ${lenguajeGB.smsConfi6()}
 ${lenguajeGB.smsConfi7()}
 ${lenguajeGB.smsConfi8()}
 ${m.isGroup ? `┃` : `┃\n${lenguajeGB.smsConfi9()}`}
-*╰═════ *${vs}* ═══⊷*
+┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
+┃ඬ⃟ ✨ *${vs}* °ೋ•❖═══╝*
 ${wm}`,//`
 title: null,
 buttonText: `⚙️ ${lenguajeGB.smsConfi1()} ⚙️`,
