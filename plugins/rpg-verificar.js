@@ -22,17 +22,17 @@ global.db.data.users[m.sender].exp += 150
 global.db.data.users[m.sender].joincount += 5
 let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)        
 //m.react('✅️') 
-let regbot = `🌟 *R E G I S T R A D O* 🌟
-•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•
-✨️ Nombre: ${name}
-🧃 Edad: ${age} años
-•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•
-🎁 Recompensas:
-• 7 Diamantes 💎
-• 5 BrolyCoins 💰
-• 150 Experiencia 💸
-• 3 Tokens 🪙
-•┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄•`
+let regbot = `📌 𝐑 𝐄 𝐆 𝐈 𝐒 𝐓 𝐑 𝐎 📌
+•･*:.｡.･･.｡.:*･•
+「🌠」𝐍𝐨𝐦𝐛𝐫𝐞: ${name}
+「✨️」𝐄𝐝𝐚𝐝: ${age} años
+•║▌│█║▌│ █║▌│█│║▌║
+「🎁」𝐑𝐞𝐜𝐨𝐦𝐩𝐞𝐧𝐬𝐚𝐬:
+• 10 Estrellas 🌟
+• 5 GokuCoins 🪙
+• 245 Experiencia 💸
+• 12 Tokens 💰
+•║▌│█║▌│ █║▌│█│║▌║`
 conn.sendMessage(m.chat, {
 text: regbot,
 contextInfo: {
