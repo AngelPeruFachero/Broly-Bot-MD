@@ -37,7 +37,7 @@ conn.sendMessage(m.chat, {
 text: regbot,
 contextInfo: {
 externalAdReply: {
-title: '✅ REGISTRADO ✅️',
+title: '⊱『✅𝆺𝅥 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢(𝗔) 𝆹𝅥✅』⊰',
 body: wm, 
 thumbnaiUrl: global.gataImg, 
 sourceUrl: global.canales,
