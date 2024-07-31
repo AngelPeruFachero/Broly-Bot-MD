@@ -1,6 +1,6 @@
 let handler = async (m, { conn, command, usedPrefix }) => {
 let pp = `https://telegra.ph/file/f5580f6fcacfe726d7cd4.jpg`
-let stafftxt = `💫 *EQUIPO STAFF*
+let stafftxt = `💫 *𝗘𝗤𝗨𝗜𝗣𝗢 𝗦𝗧𝗔𝗙𝗙 𝗕𝗥𝗢𝗟𝗬*
 ⚡ *Bot:* ${gt}
 ☁️ *Versión:* ${vs}
 
@@ -11,26 +11,26 @@ let stafftxt = `💫 *EQUIPO STAFF*
 📲 *Número:* ${nomorown}
 🧲 *GitHub:* https://github.com/AngelPeruFachero 
 
-💫 *Colaboradores:*
+💥 𝗖𝗼𝗹𝗮𝗯𝗼𝗿𝗮𝗱𝗼𝗿𝗲𝘀:
 
-• Diego-YL-177
-🔰 *Rol:* Developer
-📲 *Número:* Wa.me/573218138672
+• 𝗳𝗮𝗸𝗲
+🔰 *Rol:* 𝘀𝘁𝗮𝗳𝗳 𝗕𝗿𝗼𝗹𝘆
+📲 *Número:* Wa.me/
 🧲 *GitHub:* https://github.com/Diego-YL-177
 
-• SoIz1
-🔰 *Rol:* Developer
-📲 *Número:* Wa.me/5217442363122
+• 𝗳𝗮𝗸𝗲
+🔰 *Rol:* 𝘀𝘁𝗮𝗳𝗳 𝗕𝗿𝗼𝗹𝘆
+📲 *Número:* Wa.me/
 🧲 *GitHub:* https://github.com/SoIz1
 
-• WilsonOFC
-🔰 *Rol:* Developer
-📲 *Número:* Wa.me/5492964650915
+• 𝗳𝗮𝗸𝗲
+🔰 *Rol:* 𝘀𝘁𝗮𝗳𝗳 𝗕𝗿𝗼𝗹𝘆
+📲 *Número:* Wa.me/
 🧲 *GitHub:* https://github.com/WilsonOFC
 
-• Alba070503
-🔰 *Rol:* Developer
-📲 *Número:* Wa.me/59169082575
+• 𝗳𝗮𝗸𝗲
+🔰 *Rol:* 𝘀𝘁𝗮𝗳𝗳 𝗕𝗿𝗼𝗹𝘆
+📲 *Número:* Wa.me/
 🧲 *GitHub:* https://github.com/Alba070503
 
 _*Todos nosotros somos parte de Broly-Bot.*_ 
@@ -42,7 +42,7 @@ contextInfo: {
 externalAdReply: {
 showAdAttribution: true,
 renderLargerThumbnail: false,
-title: `〽️ Developer 👑`,
+title: `💥 𝘀𝘁𝗮𝗳𝗳 𝗕𝗿𝗼𝗹𝘆 💥`,
 body: `💭 Staff Oficial`,
 mediaType: 1,
 sourceUrl: accountsgb,
