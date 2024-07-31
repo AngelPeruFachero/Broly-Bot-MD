@@ -46,7 +46,7 @@ title: `〽️ Developer 👑`,
 body: `💭 Staff Oficial`,
 mediaType: 1,
 sourceUrl: accountsgb,
-thumbnailUrl: 'https://telegra.ph/file/ec5b3f141f1318dea620e.jpg'
+thumbnailUrl: 'https://telegra.ph/file/6d19ee62711d18bf04f92.jpg'
 }}
 }, { mentions: m.sender })
 
