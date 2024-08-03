@@ -1,5 +1,5 @@
 let handler = async (m, { conn, command, usedPrefix }) => {
-let pp = `https://telegra.ph/file/f5580f6fcacfe726d7cd4.jpg`
+let pp = `https://telegra.ph/file/37a3acd61ab0b6649e7ed.mp4`
 let stafftxt = `💫 *𝗘𝗤𝗨𝗜𝗣𝗢 𝗦𝗧𝗔𝗙𝗙 𝗕𝗥𝗢𝗟𝗬*
 ⚡ *Bot:* ${gt}
 ☁️ *Versión:* ${vs}
