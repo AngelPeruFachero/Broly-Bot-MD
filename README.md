@@ -230,7 +230,7 @@ grep -q 'bash\|wget' <(dpkg -l) || apt install -y bash wget && wget -O - https:/
 </a>
 
 ### 🌟 AGRADECIMIENTOS
-[![TheShadowBrokers1](https://github.com/GataNina-Li.png?size=60)](https://github.com/GataNina-Li) 
+[![TheShadowBrokers1](https://github.com/AngelPeruFachero.png?size=60)](https://github.com/AngelPeruFachero) 
 
 ### 🌟 CREADOR 
 [![AngelPeruFachero](https://github.com/AngelPeruFachero.png?size=100)](https://github.com/AngelPeruFachero) 
