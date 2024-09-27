@@ -206,6 +206,17 @@ grep -q 'bash\|wget' <(dpkg -l) || apt install -y bash wget && wget -O - https:/
 <a href="https://www.flarex.cloud"><img src="https://cdn.flarex.cloud/deploy.png" height="60px"></a>
 
 
+### **`TK HOST 📲`**
+<a href="https://dash.tk-joanhost.com"><img src="https://i.ibb.co/pr8TnWJ/SAVE-20240915-183758.jpg" height="125px"></a>
+
+<details>
+ <summary><b>:paperclip: Enlaces Importantes</b></summary>
+
+- **Dashboard:** [`Aquí`](https://dash.tk-joanhost.com)
+- **Panel:** [`Aquí`](https://panel.tk-joanhost.com)
+- **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029VaoZXbk6RGJNYQVP8r27)
+
+</details>
 
 > Recuerda leer la **[Política de Broly-Bot. 🌟](https://github.com/AngelPeruFachero/Broly-Bot-MD/blob/master/terms.md)** antes de hacer algo con este repositorio. 
   
