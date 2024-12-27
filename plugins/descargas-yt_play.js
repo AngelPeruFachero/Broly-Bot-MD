@@ -1,40 +1,66 @@
-import yts from 'yt-search';
+/* 
 
-let handler = async (m, { conn, command, args, text, usedPrefix }) => {
-    if (!text) {
-        return conn.reply(m.chat, '*Que quieres que busque 𝑩𝒓𝒐𝒍𝒚𝑩𝒐𝒕-𝑴𝑫*', m);
-    }
+[ Canal Principal ] :
+https://whatsapp.com/channel/0029VaeQcFXEFeXtNMHk0D0n
 
-    await m.react('⏳');
-    let res = await yts(text);
-    let play = res.videos[0];
+[ Canal Rikka Takanashi Bot ] :
+https://whatsapp.com/channel/0029VaksDf4I1rcsIO6Rip2X
 
-    if (!play) {
-        throw `Error: Vídeo no encontrado`;
-    }
+[ Canal StarlightsTeam] :
+https://whatsapp.com/channel/0029VaBfsIwGk1FyaqFcK91S
 
-    let { title, thumbnail, ago, timestamp, views, videoId, url } = play;
+[ HasumiBot FreeCodes ] :
+https://whatsapp.com/channel/0029Vanjyqb2f3ERifCpGT0W
+*/
 
-    let txt = '```𝚈𝚘𝚞𝚃𝚞𝚋𝚎 𝙳𝚎𝚜𝚌𝚊𝚛𝚐𝚊𝚜```\n';
-    txt += '╭━─━─━─━─≪✠≫─━─━─━─━╮\n';
-    txt += `> *𝚃𝚒𝚝𝚞𝚕𝚘* : _${title}_\n`;
-    txt += `> *𝙲𝚛𝚎𝚊𝚍𝚘* : _${ago}_\n`;
-    txt += `> *𝙳𝚞𝚛𝚊𝚌𝚒𝚘𝚗* : _${timestamp}_\n`;
-    txt += `> *𝚅𝚒𝚜𝚒𝚝𝚊𝚜* : _${views.toLocaleString()}_\n`;
-    txt += `> *𝙻𝚒𝚗𝚔* : _https://www.youtube.com/watch?v=${videoId}_\n`;
-    txt += '┗─══──━══─| ✠ |─══━─═──┛ \n';
-    txt += '𝑩𝒓𝒐𝒍𝒚𝑩𝒐𝒕-𝑴𝑫';
+// *[ ❀ PLAY ]*
+import fetch from "node-fetch";
+import yts from "yt-search";
 
-    await conn.sendButton2(m.chat, txt, '. ', thumbnail, [
-        ['MP3', `${usedPrefix}ytmp3 ${url}`],
-        ['MENU BROLY', `${usedPrefix}menu ${url}`],
-        ], null, [['Canal', 'https://whatsapp.com/channel/0029VajUPbECxoB0cYovo60W']], m);
+let handler = async (m, { conn, text }) => {
+if (!text) {
+return m.reply("❀ Ingresa el texto de lo que quieres buscar")
+}
 
-    await m.react('✅');
-};
+let ytres = await yts(text)
+let video = ytres.videos[0]
 
-handler.help = ['play'];
-handler.tags = ['downloader'] 
-handler.command = ['play',];
+if (!video) {
+return m.reply("❀ Video no encontrado")
+}
 
-export default handler;
+let { title, thumbnail, timestamp, views, ago, url } = video
+
+let vistas = parseInt(views).toLocaleString("es-ES") + " vistas"
+
+let HS = `- *Duración:* ${timestamp}
+- *Vistas:* ${vistas}
+- *Subido:* ${ago}
+- *Enlace:* ${url}`
+
+let thumb = (await conn.getFile(thumbnail))?.data;
+
+let JT = {
+contextInfo: {
+externalAdReply: {
+title: title, body: "",
+mediaType: 1, previewType: 0,
+mediaUrl: url, sourceUrl: url,
+thumbnail: thumb, renderLargerThumbnail: true,
+}}}
+
+await conn.reply(m.chat, HS, m, JT)
+
+try {
+let api = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${url}`);
+let json = await api.json()
+let { download } = json.result
+
+await conn.sendMessage(m.chat, { audio: { url: download.url }, caption: ``, mimetype: "audio/mpeg", }, { quoted: m })
+} catch (error) {
+console.error(error)    
+}}
+
+handler.command = /^(play)$/i
+
+export default handler
