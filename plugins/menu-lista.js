@@ -1,553 +1,442 @@
-//Codigo creado por David Chian wa.me/5351524614
-import fs from 'fs';
-import { xpRange } from '../lib/levelling.js';
-const { levelling } = '../lib/levelling.js';
-import moment from 'moment-timezone';
-import { prepareWAMessageMedia, generateWAMessageFromContent, getDevice } from '@whiskeysockets/baileys';
+// Botones interactivos adptados y funcionando por Gata Dios (GataNina-Li)
 
-function pickRandom(array) {
-    return array[Math.floor(Math.random() * array.length)];
+import { getDevice } from '@whiskeysockets/baileys'
+import fs from 'fs'
+import moment from 'moment-timezone'
+import fetch from 'node-fetch'
+import { xpRange } from '../lib/levelling.js'
+const { levelling } = '../lib/levelling.js'
+import PhoneNumber from 'awesome-phonenumber'
+import { promises } from 'fs'
+import { join } from 'path'
+let handler = async (m, { conn, usedPrefix, usedPrefix: _p, __dirname, text, command }) => {
+const dispositivo = await getDevice(m.key.id)
+try {
+let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
+let { exp, limit, level, role } = global.db.data.users[m.sender]
+let { min, xp, max } = xpRange(level, global.multiplier)
+let name = await conn.getName(m.sender)
+let d = new Date(new Date + 3600000)
+let locale = 'es'
+let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
+let week = d.toLocaleDateString(locale, { weekday: 'long' })
+let date = d.toLocaleDateString(locale, {
+day: 'numeric',
+month: 'long',
+year: 'numeric'
+})
+let dateIslamic = Intl.DateTimeFormat(locale + '-TN-u-ca-islamic', {
+day: 'numeric',
+month: 'long',
+year: 'numeric'
+}).format(d)
+let time = d.toLocaleTimeString(locale, {
+hour: 'numeric',
+minute: 'numeric',
+second: 'numeric'
+})
+let _uptime = process.uptime() * 1000
+let _muptime
+if (process.send) {
+process.send('uptime')
+_muptime = await new Promise(resolve => {
+process.once('message', resolve)
+setTimeout(resolve, 1000)
+}) * 1000
 }
-const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
-    let locale = 'es';
-    let d = new Date(new Date() + 3600000);
-    let time = d.toLocaleTimeString(locale, {
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-    });
+let { money, joincount } = global.db.data.users[m.sender]
+let user = global.db.data.users[m.sender]
+let muptime = clockString(_muptime)
+let uptime = clockString(_uptime)
+let totalreg = Object.keys(global.db.data.users).length
+let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
+let replace = {
+'%': '%',
+p: _p, uptime, muptime,
+me: conn.getName(conn.user.jid),
+npmname: _package.name,
+npmdesc: _package.description,
+version: _package.version,
+exp: exp - min,
+maxexp: xp,
+totalexp: exp,
+xp4levelup: max - exp,
+github: _package.homepage ? _package.homepage.url || _package.homepage : '[unknown github url]',
+level, limit, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg, role,
+readmore: readMore
+}
+text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+let mentionedJid = [who]
+let username = conn.getName(who)
+let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
+let pp = `https://telegra.ph/file/45abe0e2701e5079064b1.jpg`
+let vn = 'https://qu.ax/zckv.wav'
+let pareja = global.db.data.users[m.sender].pasangan 
+//let fsizedoc = '1'.repeat(10)
+//const adReply = { fileLength: fsizedoc, seconds: fsizedoc, contextInfo: { forwardingScore: fsizedoc, externalAdReply: { showAdAttribution: true, title: wm, body: '👋 ' + username, mediaUrl: ig, description: 'Hola', previewType: 'PHOTO', thumbnail: imagen4 }}}
+const numberToEmoji = { "0": "0️⃣", "1": "1️⃣", "2": "2️⃣", "3": "3️⃣", "4": "4️⃣", "5": "5️⃣", "6": "6️⃣", "7": "7️⃣", "8": "8️⃣", "9": "9️⃣", }
+let lvl = level
+let emoji = Array.from(lvl.toString()).map((digit) => numberToEmoji[digit] || "❓").join("")
 
-    let _uptime = process.uptime() * 1000;
-    let uptime = clockString(_uptime); 
-    let wm = global.wm;
-    let vs = global.vs;
-    let { exp, limit, level, role } = global.db.data.users[m.sender];
-    let { min, xp, max } = xpRange(level, global.multiplier);
-    let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length;
-    const rtotal = Object.entries(global.db.data.users).length || '0'
-    let name = await conn.getName(m.sender);
-    let pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => 'https://telegra.ph/file/b57bbca75d23852c832f7.jpg')
-    const ftrol = {
-    key : {
-    remoteJid: 'status@broadcast',
-    participant : '0@s.whatsapp.net'
-    },
-    message: {
-    orderMessage: {
-    itemCount : 2024,
-    status: 1,
-    surface : 1,
-    message: `Hola ${name}!`, 
-    orderTitle: `▮Menu ▸`,
-    thumbnail: await (await fetch(pp)).buffer(), //Gambarnye
-    sellerJid: '0@s.whatsapp.net' 
-    }
-    }
-    }
-    let d1 = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
-let d2 = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-let d3  = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-let d4 = 'application/pdf'
-let d5 = 'application/vnd.android.package-archive'
-let d6 = 'application/zip'
-let td = `${pickRandom([d1,d2,d3,d4,d5,d6])}`
-let fkontak = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': wm, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${wm},;;;\nFN:${wm},\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabell:Ponsel\nEND:VCARD`, 'jpegThumbnail': fs.readFileSync('./Menu.jpg'), thumbnail: fs.readFileSync('./Menu.jpg'),sendEphemeral: true}}}
-   let txt = '╭─╮︹︹⊹︹︹⊹︹︹⊹︹︹╭─╮\n    ⚘݄𖠵⃕⁖𖥔͢Menu ꪶ͢𝑩𝒐𝒕⋆᭄͙̈\n╚▭࣪▬ִ▭࣪▬ִ▭࣪▬ִ▭࣪▬ִ▭࣪▬ִ▭࣪▬▭╝'
-    let interactiveMessage = {
-        header: { title: '> 𝑩𝒊𝒆𝒏𝒗𝒆𝒏𝒊𝒅𝒐 𝒂𝒍 𝑴𝑬𝑵𝑼-𝑳𝑰𝑺𝑻𝑨                                      𝐆𝐎𝐊𝐔-𝐁𝐋𝐀𝐂𝐊-𝐁𝐎𝐓-𝐌𝐃-𝐋𝐈𝐓𝐄' },
-        hasMediaAttachment: true,
-        body: { text: `╭࣭࣭࣭࣭࣭࣭ٜ۫┄̸࣭࣭࣭࣭࣭ٜ۫☪︎︎︎̸⃘̸࣭ٜ࣪࣪࣪۬◌⃘۪֟፝֯۫۫︎⃪𐇽۫۬🌻⃘⃪۪֟፝֯۫۫۫۬◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸┄̸࣭࣭࣭࣭࣭ٜ۫┄࣭࣭࣭۫┄̸࣭࣭࣭࣭࣭ٜ۫┄࣭࣭࣭۫┄̸࣭۫┄̸࣭࣭࣭࣭࣭ٜ۫┄̸࣭۫┄̸࣭࣭࣭࣭࣭ٜ۫┄࣭࣭࣭۫╮\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬𝐇𝐨𝐥𝐚: ${name}💖 \n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬𝐓𝐢𝐞𝐦𝐩𝐨 𝐀𝐜𝐭𝐢𝐯𝐨\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬${uptime}⏱️\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬𝐔𝐬𝐮𝐚𝐫𝐢𝐨𝐬 𝐑𝐞𝐠𝐢𝐬𝐭𝐫𝐚𝐝𝐨𝐬\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬${rtotalreg}🧩\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬𝐓𝐨𝐭𝐚𝐥 𝐝𝐞 𝐔𝐬𝐮𝐚𝐫𝐢𝐨𝐬\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬${rtotal}🌺\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬𝐕𝐞𝐫𝐬𝐢𝐨́𝐧 𝐝𝐞𝐥 𝐛𝐨𝐭\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬3.0.1❤‍🔥\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬𝐒𝐞𝐥𝐞𝐜𝐜𝐢𝐨𝐧𝐚 𝐭𝐮 𝐥𝐨 𝐪𝐮𝐞 𝐪𝐮𝐢𝐞𝐫𝐚𝐬 𝐮𝐬𝐚𝐫\n⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪⚘۪۬𝐃𝐢𝐬𝐟𝐫𝐮𝐭𝐚 𝐝𝐞𝐥 𝐁𝐨𝐭 (๑˃̵　ᴗ　˂̵)و\n╰┄̸࣭࣭࣭࣭࣭ٜ۫┄࣭࣭࣭۫┄̸࣭۫┄̸࣭࣭࣭࣭࣭ٜ۫┄࣭࣭࣭۫┄̸࣭۫┄̸࣭࣭࣭࣭࣭ٜ۫┄̸࣭࣭࣭࣭࣭ٜ۫┄࣭࣭࣭۫☪︎︎︎̸⃘̸࣭ٜ࣪࣪࣪۬◌⃘۪֟፝֯۫۫︎⃪𐇽۫۬🍧⃘⃪۪֟፝֯۫۫۫۬◌⃘࣭ٜ࣪࣪࣪۬☪︎︎︎︎̸┄̸࣭࣭࣭࣭࣭ٜ۫╯ׂ` },
-        nativeFlowMessage: {
-            buttons: [
-                {
-                    name: 'single_select',
-                    buttonParamsJson: JSON.stringify({
-                        title: '𝐒𝐄𝐋𝐄𝐂𝐂𝐈𝐎𝐍𝐄 𝐀𝐐𝐔𝐢',
-                        sections: [
-                            {
-                                title: 'Iɴғᴏʀᴍᴀᴄɪᴏɴ ᴅᴇʟ Bᴏᴛ', highlight_label: "Popular",
-                                rows: [
-{
-title: "│🤴│ᴄʀᴇᴀᴅᴏʀ ᴅᴇʟ ʙᴏᴛ", 
-description: "ɴᴜᴍᴇʀᴏs ᴏғɪᴄɪᴀʟᴇ𝚜",
-id: `${prefijo}owner`
-},
-{
-title: "│🔥│ɢʀᴜᴘᴏs ᴏғᴄ ᴅᴇʟ ʙᴏᴛ", 
-description: "ᴏʙᴛᴇɴ ʟᴀ ʟɪsᴛᴀ ᴅᴇ ʟᴏs ɢʀᴜᴘᴏs ᴏғɪᴄɪᴀʟᴇs ᴅᴇ 𝙶𝙾𝙺𝚄-𝙱𝙻𝙰𝙲𝙺-𝙱𝙾𝚃-𝙼𝙳-𝙻𝙸𝚃𝙴",
-id: `${prefijo}grupos`
-},
-{
-title: "│❤️‍🔥│ᴇsᴛᴀᴅᴏ ᴅᴇʟ ʙᴏᴛ", 
-description: "ᴏʙᴛᴇɴ ʟᴀ ɪɴғᴏʀᴍᴀᴄɪᴏɴ ᴅᴇʟ ᴇsᴛᴀᴅᴏ ᴀᴄᴛᴜᴀʟ ᴅᴇʟ ʙᴏᴛ",
-id: `${prefijo}estado`
-},
-{
-title: "│❔│ɪɴғᴏ ᴅᴇʟ ʙᴏᴛ", 
-description: "ᴏʙᴛᴇɴ ʟᴀ ɪɴғᴏʀᴍᴀᴄɪᴏɴ ᴅᴇ 𝙶𝙾𝙺𝚄-𝙱𝙻𝙰𝙲𝙺-𝙱𝙾𝚃-𝙼𝙳-𝙻𝙸𝚃𝙴",
-id: `${prefijo}infobot`
-},
-{
-title: "│🏆│ᴀᴘᴏʏᴀʀ ᴀʟ ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏ", 
-description: "sɪ ᴛᴇ ɢᴜsᴛᴀ ᴇʟ ʙᴏᴛ ᴀǫᴜɪ ᴘᴏᴅʀᴀs ᴀʏᴜᴅᴀʀ ᴀ ʟᴏs ǫᴜᴇ ʜɪᴄɪᴇʀᴏɴ ᴇsᴛᴏ ᴘᴏsɪʙʟᴇ",
-id: `${prefijo}donar`
-},
-{
-title: "│🧩│ᴄᴜᴇɴᴛᴀs ᴏғɪᴄɪᴀʟᴇs", 
-description: "ᴏʙᴛᴇɴ ʟᴀ ɪɴғᴏʀᴍᴀᴄɪᴏɴ ᴅᴇ ʟᴀs ᴄᴜᴇɴᴛᴀs ᴏғɪᴄɪᴀʟᴇs ᴅᴇ ʟᴏs ᴄʀᴇᴀᴅᴏʀᴇs ᴅᴇʟ ʙᴏᴛ",
-id: `${prefijo}cuentas`
-},
-{
-title: "│🥂│sᴜʙʙᴏᴛs ᴀᴄᴛɪᴠᴏs", 
-description: "ᴏʙᴛᴇɴ ᴜɴᴀ ʟɪsᴛᴀ ᴅᴇ ʟᴏs ʙᴏᴛs (sᴜʙʙᴏᴛs) ᴀᴄᴛɪᴠᴏs ᴀᴄᴛᴜᴀʟᴍᴇɴᴛᴇ",
-id: `${prefijo}bots`
+const lugarFecha = moment().tz('America/Lima')
+const formatoFecha = {
+weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 }
-]},
-{
-title: 'Sᴏʟᴜᴄɪᴏɴ ᴀ Eʀʀᴏʀᴇs', highlight_label: "Importante",
-rows: [
-{
-title: "│🧊│ᴍᴇɴsᴀᴊᴇs ᴇɴ ᴇsᴘᴇʀᴀ", 
-description: "ᴅɪsᴘᴏɴɪʙʟᴇ ᴘᴀʀᴀ ᴛᴏᴅᴏs ᴜsᴀ ᴇsᴛᴇ ᴄᴏᴍᴀɴᴅᴏ sᴏʟᴏ sɪ ɴᴏ ᴘᴜᴇᴅᴇs ᴠᴇʀ ʟᴏs ᴍᴇɴsᴀᴊᴇs ᴅᴇʟ ʙᴏᴛ ᴏ ᴛᴇ sᴀʟᴇɴ ᴄᴏᴍᴏ ᴍᴇɴsᴀᴊᴇ ᴇɴ ᴇsᴘᴇʀᴀ",
-id: `${prefijo}fixmsgespera`
-},
-{
-title: "│🍹│ᴍᴇɴsᴀᴊᴇs ᴇɴ ᴇsᴘᴇʀᴀ (ᴏᴡɴᴇʀ)", 
-description: "ᴅɪsᴘᴏɴɪʙʟᴇ sᴏʟᴏ ᴘᴀʀᴀ ᴇʟ ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏ ᴅᴇʟ ʙᴏᴛ, sᴇ ᴜsᴀ ᴄᴜᴀɴᴅᴏ ɴᴏ sᴀʟᴇɴ ʟᴏs ᴍᴇɴsᴀᴊᴇs ᴅᴇʟ ʙᴏᴛ",
-id: `${prefijo}ds`
-}
-]},
-{
-title: 'Mᴇɴᴜs ᴅᴇ Kᴏᴛᴏʀɪ-Bᴏᴛ', highlight_label: "Popular",
-rows: [
-{
-title: "│✨│ᴍᴇɴᴜ ᴄᴏᴍᴘʟᴇᴛᴏ", 
-description: "ᴏʙᴛᴇɴ ᴇʟ ᴍᴇɴᴜ ᴄᴏᴍᴘʟᴇᴛᴏ ᴄᴏɴ ᴛᴏᴅᴀs ʟᴀs ғᴜɴᴄɪᴏɴᴇs ᴅᴇ ᴋᴏᴛᴏʀɪ-ʙᴏᴛ",
-id: `${prefijo}menu`
-},
-{
-title: "│🔮│ᴍᴇɴᴜ ᴀɴɪᴍᴇ", 
-description: "ᴏʙᴛᴇɴ ᴇʟ ᴍᴇɴᴜ ᴅᴇ ᴀɴɪᴍᴇs ᴅᴇʟ ʙᴏᴛ",
-id: `${prefijo}menuanimes`
-},
-{
-title: "│🎮│ᴍᴇɴᴜ ᴊᴜᴇɢᴏs", 
-description: "ᴏʙᴛᴇɴ ᴇʟ ᴍᴇɴᴜ ᴅᴇ ᴊᴜᴇɢᴏs ᴅᴇʟ ʙᴏᴛ",
-id: `${prefijo}menujuegos`
-},
-{
-title: "│🎼│ᴍᴇɴᴜ ᴀᴜᴅɪᴏs", 
-description: "ᴏʙᴛᴇɴ ᴇʟ ᴍᴇɴᴜ ᴅᴇ ᴀᴜᴅɪᴏs ᴅᴇʟ ʙᴏᴛ",
-id: `${prefijo}menuaudios`
-},
-{
-title: "│💦│ᴍᴇɴᴜ ᴄᴏᴍᴀɴᴅᴏs +𝟷𝟾", 
-description: "ᴏʙᴛᴇɴ ᴇʟ ᴍᴇɴᴜ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏs +𝟷𝟾 ᴅᴇʟ ʙᴏᴛ",
-id: `${prefijo}hornymenu`
-},
-{
-title: "│⚡│ᴍᴇɴᴜ ᴏᴡɴᴇʀ", 
-description: "ᴏʙᴛᴇɴ ᴇʟ ᴍᴇɴᴜ ᴅᴇʟ ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏ ᴅᴇʟ ʙᴏᴛ",
-id: `${prefijo}menuowner`
-}
-]},
-{
-title: 'Sᴇʀ ʙᴏᴛ Jᴀᴅɪʙᴏᴛ', highlight_label: "SerSubbot",
-rows: [
-{
-title: "│🔗│ʙᴏᴛᴄʟᴏɴᴇ", 
-description: "ᴄᴏɴᴠɪᴇ́ʀᴛᴇᴛᴇ ᴇɴ ᴜɴ ᴄʟᴏɴ ᴅᴇ ᴇsᴛᴇ ɪɴᴄʀᴇɪ́ʙʟᴇ ʙᴏᴛ ᴇsᴄᴀɴᴇᴀɴᴅᴏ ᴜɴ ǫʀ ᴇɴ ᴛᴜ ᴡʜᴀᴛsᴀᴘᴘ",
-id: `${prefijo}serbot`
-},
-{
-title: "│🗑│ᴅᴇʟᴇᴛᴇʙᴏᴛ", 
-description: "ᴇʟɪᴍɪɴᴀ ᴛᴜ ᴄᴏᴘɪᴀ (sᴜʙʙᴏᴛ) ᴅᴇ ᴍᴇɢᴜᴍɪɴ-ʙᴏᴛ",
-id: `${prefijo}deletebot`
-},
-{
-title: "│🔗│sᴛᴏᴘ ᴍʏ sᴜʙʙᴏᴛ", 
-description: "ᴅᴇᴛᴇɴ ᴅᴇ ғᴏʀᴍᴀ ᴛᴇᴍᴘᴏʀᴀʟ ᴛᴜ sᴜʙʙᴏᴛ",
-id: `${prefijo}stop`
-}
-]},
-{
-title: 'Aᴄᴛɪᴠᴀʀ ᴏ Dᴇsᴀᴄᴛɪᴠᴀʀ', highlight_label: "Importantes",
-rows: [
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ʀᴇsᴛʀɪᴄᴄɪᴏɴᴇs", 
-description: "ᴀᴄᴛɪᴠᴀ ʟᴀs ʀᴇsᴛʀɪᴄᴄɪᴏɴᴇs ᴅᴇʟ ʙᴏᴛ ᴘᴀʀᴀ ǫᴜᴇ ᴇsᴛᴇ ᴘᴜᴇᴅᴀ ᴀᴅᴍɪɴɪsᴛʀᴀʀ ᴍᴇᴊᴏʀ ʟᴏs ɢʀᴜᴘᴏs (sᴏʟᴏ ᴇʟ ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏ)",
-id: `${prefijo}enable restrict`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ʀᴇsᴛʀɪᴄᴄɪᴏɴᴇs", 
-description: "ᴅᴇsᴀᴄᴛɪᴠᴀ ʟᴀs ʀᴇsᴛʀɪᴄᴄɪᴏɴᴇs ᴅᴇʟ ʙᴏᴛ ᴘᴏʀ ʟᴏ ᴄᴜᴀʟ ɴᴏ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀ ʟᴏs ᴜsᴜᴀʀɪᴏs (sᴏʟᴏ ᴇʟ ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏ)",
-id: `${prefijo}disable restrict`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴡᴇʟᴄᴏᴍᴇ", 
-description: "ᴀᴄᴛɪᴠᴀ ᴇʟ ᴍᴇɴsᴀᴊᴇ ᴅᴇ ʙɪᴇɴᴠᴇɴɪᴅᴀ ᴇɴ ᴇʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable welcome`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴡᴇʟᴄᴏᴍᴇ", 
-description: "ᴅᴇsᴀᴄᴛɪᴠᴀ ᴇʟ ᴍᴇɴsᴀᴊᴇ ᴅᴇ ʙɪᴇɴᴠᴇɴɪᴅᴀ ᴇɴ ᴇʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable welcome`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴍᴏᴅᴏʜᴏʀɴʏ", 
-description: "ᴀᴄᴛɪᴠᴀ ʏ ᴘᴇʀᴍɪᴛᴇ ǫᴜᴇ ʟᴏs ᴜsᴜᴀʀɪᴏs ᴘᴜᴇᴅᴀɴ ᴜsᴀʀ ʟᴏs ᴄᴏᴍᴀɴᴅᴏs +𝟷𝟾 ᴅᴇʟ ʙᴏᴛ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable modohorny`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴍᴏᴅᴏʜᴏʀɴʏ", 
-description: "ᴅᴇsᴀᴄᴛɪᴠᴀ ʏ ᴇᴠɪᴛᴀ ǫᴜᴇ ʟᴏs ᴜsᴜᴀʀɪᴏs ᴘᴜᴇᴅᴀɴ ᴜsᴀʀ ʟᴏs ᴄᴏᴍᴀɴᴅᴏs +𝟷𝟾 ᴅᴇʟ ʙᴏᴛ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable modohorny`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪʟɪɴᴋ",
-description: "ᴀᴄᴛɪᴠᴀ ʟᴀ ᴘʀᴏᴛᴇᴄᴄɪᴏ́ɴ ᴀɴᴛɪʟɪᴄᴋ, ᴇʟ ʙᴏᴛ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀ ʟᴏs ᴜsᴜᴀʀɪᴏs ǫᴜᴇ ᴍᴀɴᴅᴇɴ ʟɪɴᴋ ᴅᴇ ɢʀᴜᴘᴏs ᴅᴇ ᴡʜᴀᴛsᴀᴘᴘ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable antilink`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪʟɪɴᴋ", 
-description: "ᴅᴇsᴀᴄᴛɪᴠᴀ ʟᴀ ᴘʀᴏᴛᴇᴄᴄɪᴏ́ɴ ᴀɴᴛɪʟɪᴄᴋ, ᴇʟ ʙᴏᴛ ɴᴏ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀ ʟᴏs ᴜsᴜᴀʀɪᴏs ᴏ̨ᴜᴇ ᴍᴀɴᴅᴇɴ ʟɪɴᴋ ᴅᴇ ɢʀᴜᴘᴏs ᴅᴇ ᴡʜᴀᴛsᴀᴘᴘ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable antilink`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪʟɪɴᴋ𝟸", 
-description: "ᴀᴄᴛɪᴠᴀ ʟᴀ ᴘʀᴏᴛᴇᴄᴄɪᴏ́ɴ ᴀɴᴛɪʟɪᴄᴋ𝟸, ᴇʟ ʙᴏᴛ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀ ʟᴏs ᴜsᴜᴀʀɪᴏs ǫᴜᴇ ᴍᴀɴᴅᴇɴ ᴄᴜᴀʟǫᴜɪᴇʀ ʟɪɴᴋ ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable antilink2`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪʟɪɴᴋ𝟸", 
-description: "ᴀᴄᴛɪᴠᴀ ʟᴀ ᴘʀᴏᴛᴇᴄᴄɪᴏ́ɴ ᴀɴᴛɪʟɪᴄᴋ𝟸, ᴇʟ ʙᴏᴛ ɴᴏ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀ ʟᴏs ᴜsᴜᴀʀɪᴏs ᴏ̨ᴜᴇ ᴍᴀɴᴅᴇɴ ᴄᴜᴀʟᴏ̨ᴜɪᴇʀ ʟɪɴᴋ ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable antilink2`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴅᴇᴛᴇᴄᴛ", 
-description: "ᴇʟ ʙᴏᴛ ᴅᴇᴛᴇᴄᴛᴀʀᴀ ʏ ɪɴғᴏʀᴍᴀʀᴀ ᴇɴ ᴇʟ ɢʀᴜᴘᴏ ᴀᴄᴇʀᴄᴀ ᴅᴇ ᴄᴜᴀʟǫᴜɪᴇʀ ᴀᴄᴛɪᴠɪᴅᴀᴅ ᴇɴ ʟᴀ ᴄᴏɴғɪɢᴜʀᴀᴄɪᴏ́ɴ ᴅᴇʟ ɢʀᴜᴘᴏ ᴇᴊᴇᴍᴘʟᴏ ᴄᴜᴀɴᴅᴏ sᴇ ᴘʀᴏᴍᴜᴇᴠᴇ ᴜɴ ɴᴜᴇᴠᴏ ᴀᴅᴍɪɴ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable detect`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴅᴇᴛᴇᴄᴛ", 
-description: "ᴇʟ ʙᴏᴛ ɴᴏ ᴅᴇᴛᴇᴄᴛᴀʀᴀ ɴɪ ɪɴғᴏʀᴍᴀʀᴀ ᴇɴ ᴇʟ ɢʀᴜᴘᴏ ᴀᴄᴇʀᴄᴀ ᴅᴇ ᴄᴜᴀʟᴏ̨ᴜɪᴇʀ ᴀᴄᴛɪᴠɪᴅᴀᴅ ᴇɴ ʟᴀ ᴄᴏɴғɪɢᴜʀᴀᴄɪᴏ́ɴ ᴅᴇʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable detect`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴀᴜᴅɪᴏs",
-description: "sᴇ ᴀᴄᴛɪᴠᴀʀᴀ́ɴ ʟᴏs ᴀᴜᴅɪᴏs ᴅᴇʟ ʙᴏᴛ,ʀᴇᴄᴏᴍᴇɴᴅᴀʙʟᴇ ɴᴏ ʜᴀᴄᴇʀ sᴘᴀᴍ ᴅᴇ ᴇsᴛᴏs ᴀᴜᴅɪᴏs, ᴘᴀʀᴀ ᴍᴀs ɪɴғᴏʀᴍᴀᴄɪᴏ́ɴ ᴜsᴇ !ᴍᴇɴᴜ𝟸 (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable audios`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴀᴜᴅɪᴏs", 
-description: "sᴇ ᴅᴇsᴀᴄᴛɪᴠᴀʀᴀ́ɴ ʟᴏs ᴀᴜᴅɪᴏs ᴅᴇʟ ʙᴏᴛ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable audios`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ",
-description: "ᴇʟ ʙᴏᴛ ᴇɴᴠɪᴀʀᴀ́ ᴀᴜᴛᴏᴍᴀ́ᴛɪᴄᴀᴍᴇɴᴛᴇ ᴇɴ ғᴏʀᴍᴀ ᴅᴇ sᴛɪᴄᴋᴇʀ ᴀ ᴄᴜᴀʟǫᴜɪᴇʀ ɪᴍᴀɢᴇɴ ɢɪғ ᴏ ᴠɪᴅᴇᴏ(𝟽 sᴇɢᴜɴᴅᴏs), ʀᴇᴄᴏᴍᴇɴᴅᴀʙʟᴇ ɴᴏ ʜᴀᴄᴇʀ sᴘᴀᴍ ᴄᴏɴ ᴇsᴛᴀ ғᴜɴᴄɪᴏɴ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable autosticker`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ", 
-description: "ᴇʟ ʙᴏᴛ ɴᴏ ᴇɴᴠɪᴀʀᴀ́ ᴀᴜᴛᴏᴍᴀ́ᴛɪᴄᴀᴍᴇɴᴛᴇ ᴇɴ ғᴏʀᴍᴀ ᴅᴇ sᴛɪᴄᴋᴇʀ ᴀ ᴄᴜᴀʟᴏ̨ᴜɪᴇʀ ɪᴍᴀɢᴇɴ ɢɪғ ᴏ ᴠɪᴅᴇᴏ ᴜsᴀʀᴀɴ ᴇʟ ᴄᴏᴍᴀɴᴅᴏ !s ᴘᴀʀᴀ ᴇsᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable autosticker`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴠɪᴇᴡᴏɴᴄᴇ", 
-description: "ᴇʟ ʙᴏᴛ ʀᴇᴇɴᴠɪᴀʀᴀ ᴇʟ ᴀʀᴄʜɪᴠᴏ ǫᴜᴇ ᴍᴀɴᴅᴇɴ ᴇɴ ғᴏʀᴍᴀ ᴅᴇ ᴠɪᴇᴡᴏɴᴄᴇ(ᴠᴇʀ ᴜɴᴀ ᴠᴇᴢ) ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable antiviewonce`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴠɪᴇᴡᴏɴᴄᴇ", 
-description: "ᴇʟ ʙᴏᴛ ɴᴏ ʀᴇᴇɴᴠɪᴀʀᴀ ᴇʟ ᴀʀᴄʜɪᴠᴏ ᴏ̨ᴜᴇ ᴍᴀɴᴅᴇɴ ᴇɴ ғᴏʀᴍᴀ ᴅᴇ ᴠɪᴇᴡᴏɴᴄᴇ(ᴠᴇʀ ᴜɴᴀ ᴠᴇᴢ) ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable antiviewonce`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴛᴏxɪᴄ",
-description: "ᴇʟ ʙᴏᴛ ᴅᴇᴛᴇᴄᴛᴀʀᴀ́ ʏ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀ ʟᴀ ᴘᴇʀsᴏɴᴀ ᴏ̨ᴜᴇ ᴍᴀɴᴅᴇ ᴍᴀʟᴀs ᴘᴀʟᴀʙʀᴀs ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ɢᴀʏs)",
-id: `${prefijo}enable antitoxic`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴛᴏxɪᴄ", 
-description: "ᴇʟ ʙᴏᴛ ɴᴏ ᴅᴇᴛᴇᴄᴛᴀʀᴀ́ ɴɪ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀ ʟᴀ ᴘᴇʀsᴏɴᴀ ᴏ̨ᴜᴇ ᴍᴀɴᴅᴇ ᴍᴀʟᴀs ᴘᴀʟᴀʙʀᴀs ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable antitoxic`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴛʀᴀʙᴀ", 
-description: "ᴇʟ ʙᴏᴛ ᴅᴇᴛᴇᴄᴛᴀʀᴀ́ ʏ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀʟ ᴜsᴜᴀʀɪᴏ ǫᴜᴇ ᴍᴀɴᴅᴇ ᴛʀᴀʙᴀs ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable antitraba`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴛʀᴀʙᴀ", 
-description: "ᴇʟ ʙᴏᴛ ɴᴏ ᴅᴇᴛᴇᴄᴛᴀʀᴀ́ ɴɪ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀʟ ᴜsᴜᴀʀɪᴏ ᴏ̨ᴜᴇ ᴍᴀɴᴅᴇ ᴛʀᴀʙᴀs ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable antitraba`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴀʀᴀʙᴇs", 
-description: "ᴇʟ ʙᴏᴛ ᴅᴇᴛᴇᴄᴛᴀʀᴀ́ ʏ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀ ʟᴏs ᴀ́ʀᴀʙᴇs ǫᴜᴇ ɪɴᴛᴇɴᴛᴇɴ ᴇɴᴛʀᴀʀ ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable antiarabes`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴀʀᴀʙᴇs", 
-description: "ᴇʟ ʙᴏᴛ ɴᴏ ᴅᴇᴛᴇᴄᴛᴀʀᴀ́ ɴɪ ᴇʟɪᴍɪɴᴀʀᴀ́ ᴀ ʟᴏs ᴀ́ʀᴀʙᴇs ᴏ̨ᴜᴇ ᴇɴᴛʀᴇɴ ᴀʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable antiarabes`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴍᴏᴅᴏᴀᴅᴍɪɴ", 
-description: "ᴇʟ ʙᴏᴛ sᴏʟᴏ ʀᴇsᴘᴏɴᴅᴇʀᴀ́ ᴀ ʟᴏs ᴀᴅᴍɪɴɪsᴛʀᴀᴅᴏʀᴇs ᴅᴇʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable modoadmin`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴍᴏᴅᴏᴀᴅᴍɪɴ", 
-description: "ᴇʟ ʙᴏᴛ ʀᴇsᴘᴏɴᴅᴇʀᴀ́ ᴀ ᴛᴏᴅᴏs ʟʟs ᴜsᴜᴀʀɪᴏs ᴅᴇʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable modoadmin`
-},
-{
-title: "│✅│ᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴅᴇʟᴇᴛᴇ", 
-description: "ᴇʟ ʙᴏᴛ ᴍᴏsᴛʀᴀʀᴀ́ ʟᴏs ᴍᴇɴsᴀᴊᴇs ᴇʟɪᴍɪɴᴀᴅᴏs ᴇɴ ᴇʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}enable antidelete`
-},
-{
-title: "│❎│ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴀɴᴛɪᴅᴇʟᴇᴛᴇ", 
-description: "ᴇʟ ʙᴏᴛ ɴᴏ ᴍᴏsᴛʀᴀʀᴀ́ ʟᴏs ᴍᴇɴsᴀᴊᴇs ᴇʟɪᴍɪɴᴀᴅᴏs ᴇɴ ᴇʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}disable antidelete`
-}
-]},
-{
-title: 'Gʀᴜᴘᴏs', highlight_label: "hot",
-rows: [
-{
-title: "│📄│ɪɴғᴏʀᴍᴀᴄɪᴏɴ ᴅᴇʟ ɢʀᴜᴘᴏ", 
-description: "ᴍᴜᴇsᴛʀᴀ ᴛᴏᴅᴀ ʟᴀ ɪɴғᴏʀᴍᴀᴄɪᴏ́ɴ ᴅᴇʟ ɢʀᴜᴘᴏ",
-id: `${prefijo}infogroup`
-},
-{
-title: "│🍻│ʟɪɴᴋ ᴅᴇʟ ɢʀᴜᴘᴏ", 
-description: "ᴏʙᴛᴇɴ ᴅᴇ ғᴏʀᴍᴀ ʀᴀᴘɪᴅᴀ ᴇʟ ʟɪɴᴋ ᴅᴇʟ ɢʀᴜᴘᴏ",
-id: `${prefijo}link`
-},
-{
-title: "│🔏│ʀᴇᴇsᴛᴀʙʟᴇsᴇʀ ʟɪɴᴋ", 
-description: "ʀᴇsᴛᴀʙʟᴇᴄᴇ ᴇʟ ʟɪɴᴋ ᴅᴇʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}resetlink`
-},
-{
-title: "│⚠️│ʟɪsᴛᴀ ᴅᴇ ᴀᴅᴠᴇʀᴛᴇɴᴄɪᴀs", 
-description: "ᴏʙᴛᴇɴ ʟᴀ ʟɪsᴛᴀ ᴅᴇ ʟᴏs ᴜsᴜᴀʀɪᴏs ǫᴜᴇ ᴛɪᴇɴᴇɴ ᴀᴅᴠᴇʀᴛᴇɴᴄɪᴀs ᴇɴ ᴇʟ ɢʀᴜᴘᴏ",
-id: `${prefijo}listwarn`
-},
-{
-title: "│📢│ɪɴᴠᴏᴄᴀʀ ɢʀᴜᴘᴏ", 
-description: "ᴍᴇɴᴄɪᴏɴᴀ ᴀ ᴛᴏᴅᴏs ʟᴏs ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛᴇs ᴅᴇʟ ɢʀᴜᴘᴏ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}tagall`
-},
-{
-title: "│🔓│ᴀʙʀɪʀ ᴇʟ ɢʀᴜᴘᴏ", 
-description: "ʜᴀʙʀᴇ ᴇʟ ɢʀᴜᴘᴏ ʏ ᴘᴇʀᴍɪᴛᴇ ǫᴜᴇ ᴛᴏᴅᴏs ʟᴏs ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛᴇs ʜᴀʙʟᴇɴ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}grupo on`
-},
-{
-title: "│🔐│ᴄᴇʀʀᴀʀ ᴇʟ ɢʀᴜᴘᴏ", 
-description: "ᴄɪᴇʀʀᴀ ᴇʟ ɢʀᴜᴘᴏ ᴅᴇ ᴍᴏᴅᴏ ᴛᴀʟ ǫᴜᴇ sᴏʟᴏ ʟᴏs ᴀᴅᴍɪɴɪsᴛʀᴀᴅᴏʀᴇs ᴘᴜᴇᴅᴇɴ ʜᴀʙʟᴀʀ (sᴏʟᴏ ᴀᴅᴍɪɴs)",
-id: `${prefijo}grupo cerrar`
-}
-]},
-{
-title: 'Fʀᴀsᴇs ʏ Tᴇxᴛᴏs', highlight_label: "♡",
-rows: [
-{
-title: "│🍹│ᴘɪʀᴏᴘᴏs", 
-description: "ᴏʙᴛᴇɴ ᴜɴ ᴘɪʀᴏᴘᴏ",
-id: `${prefijo}piropo`
-},
-{
-title: "│✌│ᴄᴏɴsᴇᴊᴏs", 
-description: "ᴏʙᴛᴇɴ ᴜɴ ᴄᴏɴsᴇᴊᴏ",
-id: `${prefijo}consejo`
-},
-{
-title: "│🥰│ғʀᴀsᴇ ʀᴏᴍᴀɴᴛɪᴄᴀ", 
-description: "ᴏʙᴛᴇɴ ᴜɴᴀ ғʀᴀsᴇ ʀᴏᴍᴀɴᴛɪᴄᴀ",
-id: `${prefijo}fraseromantica`
-},
-{
-title: "│💕│ʜɪsᴛᴏʀɪᴀ ʀᴏᴍᴀɴᴛɪᴄᴀ", 
-description: "ᴏʙᴛᴇɴ ᴜɴᴀ ᴘᴇǫᴜᴇɴ̃ᴀ ʜɪsᴛᴏʀɪᴀ ʀᴏᴍᴀɴᴛɪᴄᴀ",
-id: `${prefijo}historiaromantica`
-}
-]},
-{
-title: 'Rᴀɴᴅᴏᴍ',
-rows: [
-{
-title: "│🏞│ᴀᴠᴇɴᴛᴜʀᴀ", 
-description: "ᴅɪʀɪ́ɢᴇᴛᴇ ᴀ ᴜɴᴀ ɢʀᴀɴ ᴀᴠᴇɴᴛᴜʀᴀ ʏ ɢᴀɴᴀ ᴜɴᴀ ʀᴇᴄᴏᴍᴘᴇɴsᴀ ᴘᴏʀ ᴇʟʟᴏ",
-id: `${prefijo}adventure`
-},
-{
-title: "│🏹│ᴄᴀᴢᴀʀ", 
-description: "sᴀʟ ᴅᴇ ᴄᴀᴢᴀ ʏ ɢᴀɴᴀ ᴛᴜ ʀᴇᴄᴏᴍᴘᴇɴsᴀ",
-id: `${prefijo}cazar`
-},
-{
-title: "│🎲│ᴄᴏғʀᴇ", 
-description: "ʜᴀʙʀᴇ́ ᴜɴ ᴄᴏғʀᴇ ʏ ᴏʙᴛᴇɴ ᴛᴜ ʀᴇᴄᴏᴍᴘᴇɴsᴀ ᴅɪᴀʀɪᴀ",
-id: `${prefijo}cofre`
-},
-{
-title: "│⚖️│ʙᴀʟᴀɴᴄᴇ", 
-description: "ᴏʙsᴇʀᴠᴀ ʟᴏ ǫᴜᴇ ᴛɪᴇɴᴇs ᴇɴ ᴛᴜ ɪɴᴠᴇɴᴛsʀɪᴏ",
-id: `${prefijo}balance`
-},
-{
-title: "│💰│ᴄʟᴀɪᴍ", 
-description: "ᴏʙᴛᴇɴ ᴛᴜ ʀᴇᴄᴏᴍᴘᴇɴsᴀ ᴅɪᴀʀɪᴀ",
-id: `${prefijo}claim`
-},
-{
-title: "│🩹│ʜᴇᴀʟ", 
-description: "ᴏʙᴛᴇɴ ᴛᴜ ᴇsᴛᴀᴅᴏ ᴅᴇ ᴠɪᴅᴀ ᴀᴄᴛᴜᴀʟ",
-id: `${prefijo}heal`
-},
-{
-title: "│💯│ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ", 
-description: "ᴏʙsᴇʀᴠᴀ ᴇʟ ᴛᴏᴘ𝟷𝟶 ᴜsᴜᴀʀɪᴏs ᴄᴏɴ ᴍᴀs xᴘ ʏ ᴄᴏᴍᴘᴀʀᴀ ᴛᴜ ʟᴜɢᴀʀ",
-id: `${prefijo}lb`
-},
-{
-title: "│🌀│ʟᴇᴠᴇʟᴜᴘ", 
-description: "sᴜʙᴇ ᴅᴇ ɴɪᴠᴇʟ ɪɴsᴛᴀɴᴛᴀ́ɴᴇᴀᴍᴇɴᴛᴇ sɪ ᴛɪᴇɴᴇs ᴇʟ xᴘ sᴜғɪᴄɪᴇɴᴛᴇ",
-id: `${prefijo}levelup`
-},
-{
-title: "│👤│ᴘᴇʀғɪʟ", 
-description: "ᴇᴄʜᴀ ᴜɴ ᴠɪsᴛᴀsᴏ ᴀ ᴛᴜ ᴘᴇʀғɪʟ",
-id: `${prefijo}perfil`
-},
-{
-title: "│🔧│ᴡᴏʀᴋ", 
-description: "ᴛʀᴀʙᴀᴊᴀ ʏ ɢᴀɴᴀ ᴛᴜ ᴍᴇʀᴇᴄɪᴅᴀ ʀᴇᴄᴏᴍᴘᴇɴsᴀ",
-id: `${prefijo}work`
-},
-{
-title: "│⛏️│ᴍɪɴᴀʀ", 
-description: "ɢᴀɴᴀ xᴘ ᴅᴇ ғᴏʀᴍᴀ ɪɴsᴛᴀɴᴛᴀ́ɴᴇᴀ",
-id: `${prefijo}minar`
-},
-{
-title: "│💣│ᴍɪɴᴀʀ 𝟸", 
-description: "ɢᴀɴᴀ ᴇsᴛʀᴇʟʟᴀs ʏ ᴏʙᴛᴇɴ ᴜɴ ʙᴏɴᴏ ᴅᴇ ғᴏʀᴍᴀ ɪɴsᴛᴀɴᴛᴀ́ɴᴇᴀ",
-id: `${prefijo}minar2`
-},
-{
-title: "│💵│ʙᴜʏ", 
-description: "ᴄᴏᴍᴘʀᴀ ᴇsᴛʀᴇʟʟᴀs ᴜsᴀɴᴅᴏ ᴛᴜ xᴘ (ᴜsᴏ ɴᴏʀᴍᴀʟ !ʙᴜʏ + ᴄᴀɴᴛɪᴅᴀᴅ)",
-id: `${prefijo}buy`
-},
-{
-title: "│💸│ʙᴜʏ ᴀʟʟ", 
-description: "ᴄᴏᴍᴘʀᴀ ᴅᴇ ғᴏʀɴᴀ ɪɴsᴛᴀɴᴛᴀ́ɴᴇᴀ ᴛᴏᴅᴏ ᴇʟ ᴇsᴛʀᴇʟʟᴀs ǫᴜᴇ ᴘᴜᴇᴅᴀs ᴜsᴀɴᴅᴏ ᴛᴏᴅᴏ ᴛᴜ xᴘ",
-id: `${prefijo}buyall`
-}
-                                ]
-                            }
-                        ]
-                    })
-                }
-            ],
-            messageParamsJson: ''
-        }
-    };
-    function _0x2daf() {
-    const _0x4c1076 = ['namedoc', 'social', '1017dFLzIP', '11680bWFOeX', 'sendMessage', '1FnTozH', '6qNtNxK', '445374chjKag', '2096504ySppGm', '627669MaFyqj', 'readFileSync', 'En breve se enviará el menú...', '374160lMCurS', '356228pujvOS', './Menu.jpg', '1019845zOpQQK', 'pdf', 'chat'];
-    _0x2daf = function() {
-        return _0x4c1076;
-    };
-    return _0x2daf();
-}
-const _0x110137 = _0x13bb;
-(function(_0x14d3d7, _0x67b65e) {
-    const _0x3a56bf = {
-            _0x2e964c: 0x1b0,
-            _0x4fc539: 0x1bd,
-            _0x2a1845: 0x1b1,
-            _0x2b6724: 0x1b3,
-            _0x4293cc: 0x1b8,
-            _0x59080a: 0x1b9
-        },
-        _0x30692c = _0x13bb,
-        _0x119b1c = _0x14d3d7();
-    while (!![]) {
-        try {
-            const _0x181128 = parseInt(_0x30692c(0x1bb)) / 0x1 * (parseInt(_0x30692c(_0x3a56bf._0x2e964c)) / 0x2) + parseInt(_0x30692c(_0x3a56bf._0x4fc539)) / 0x3 + parseInt(_0x30692c(_0x3a56bf._0x2a1845)) / 0x4 + parseInt(_0x30692c(_0x3a56bf._0x2b6724)) / 0x5 * (parseInt(_0x30692c(0x1bc)) / 0x6) + -parseInt(_0x30692c(0x1ad)) / 0x7 + -parseInt(_0x30692c(0x1be)) / 0x8 + parseInt(_0x30692c(_0x3a56bf._0x4293cc)) / 0x9 * (-parseInt(_0x30692c(_0x3a56bf._0x59080a)) / 0xa);
-            if (_0x181128 === _0x67b65e) break;
-            else _0x119b1c['push'](_0x119b1c['shift']());
-        } catch (_0x1caf7d) {
-            _0x119b1c['push'](_0x119b1c['shift']());
-        }
-    }
-}(_0x2daf, 0x235d2));
+lugarFecha.locale('es', formatoFecha)
+const horarioFecha = lugarFecha.format('dddd, DD [de] MMMM [del] YYYY || HH:mm A').replace(/^\w/, (c) => c.toUpperCase())
 
-function _0x13bb(_0x16c7de, _0x1a27b8) {
-const _0x2dafbc = _0x2daf();
-return _0x13bb = function(_0x13bbaf, _0x156d41) {
-_0x13bbaf = _0x13bbaf - 0x1ad;
-let _0x1a2b8a = _0x2dafbc[_0x13bbaf];
-return _0x1a2b8a;
-}, _0x13bb(_0x16c7de, _0x1a27b8);
-}
-let ti1 = 'El Bot mas Good!!'
-let ti2 = '𝐻𝑜𝑙𝑎!!'
-let ti3 = '𝐆𝐎𝐊𝐔-𝐁𝐋𝐀𝐂𝐊-𝐁𝐎𝐓-𝐌𝐃-𝐋𝐈𝐓𝐄'
-let ti4 = '𝐓𝐄𝐀𝐌 𝐁𝐋𝐀𝐂𝐊'
-let ti5 = 'KA𝐵𝑂𝑂𝑀𝑀!!!!'
-let ti6 = '𝐸𝑙 𝐵𝑜𝑡 𝑀𝑎𝑠 Good!'
-let ti = `${pickRandom([ti1,ti2,ti3,ti4,ti5,ti6])}`
-let buttonMessage = {
-    'document': {
-        'url': md
-    },
-    'mimetype': td,
-    'fileName': 'Ｔｕ ＢＯＴ ＦＡＶＯＲＩＴＯ',
-    'fileLength': '99999999999999',
-    'pageCount': '999',
-    'contextInfo': {
-    'externalAdReply': {
-    'showAdAttribution': !![],
-            'mediaType': 0x1,
-            'previewType': "PHOTO",
-            'title':  ti,
-            'thumbnail': global.photoSity.getRandom(),
-            'renderLargerThumbnail': !![],
-            'sourceUrl': redes
-        }
-    },
-    'caption': txt.trim()
-}
-await conn[_0x110137(0x1ba)](m[_0x110137(0x1b5)], buttonMessage, { 'quoted': ftrol })
+if (!/web|desktop|unknown/gi.test(dispositivo)) {  
+let menu = `
+*╔══❖•ೋ°𝐁𝐑𝐎𝐋𝐘𝐁𝐎𝐓-𝐌𝐃ೋ•❖═══╗*
+┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
+┃ඬ⃟ 🌵 〘 卐 _𝑶𝑾𝑵𝑬𝑹 𝑶𝑭𝑪_ 卐 〙
+┃ඬ⃟ 🌵 
+┃ඬ⃟ 🌵 _𝐀𝐧𝐠𝐞𝐥 𝐅𝐚𝐜𝐡𝐞𝐫𝐨 💥💫_
+┃ඬ⃟ 🌵  𝅙
+┃ඬ⃟ 🌵
+┃ඬ⃟ 🌵
+┃ඬ⃟ 🌵  ║▌│█║▌│█║▌│█│║▌║
+┃ඬ⃟ 🌵  ║▌│█║▌│█║▌│█│║▌║
+┃ඬ⃟ 🌵 ʙʀᴏʟʏ ʙᴏᴛ x ᴀɴɢᴇʟᴘᴇʀᴜғᴀᴄʜᴇʀᴏ
+┃ඬ⃟ 🌵 
+┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
+*╚═══❖•ೋ°           °ೋ•❖═══╝*
+*╔══❖•ೋ_𝐈𝐍𝐅𝐎 - 𝐁𝐑𝐎𝐋𝐘_ೋ•❖═══╗*
+┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
+┃ඬ⃟ ✨ \`\`\`${horarioFecha}\`\`\`
+┃ඬ⃟ ✨ *${lenguajeGB['smsTotalUsers']()}* ➺ _${Object.keys(global.db.data.users).length}_ 
+┃ඬ⃟ ✨ *Registrados »* ${rtotalreg}/${totalreg}    
+┃ඬ⃟ ✨ *${lenguajeGB['smsUptime']()}* ➺ _${uptime}_ 
+┃ඬ⃟ ✨ *${lenguajeGB['smsVersion']()}* ➺ _${vs}_
+┃ඬ⃟ ✨ *${lenguajeGB['smsMode']()} ➺* _${global.opts['self'] ? `${lenguajeGB['smsModePrivate']().charAt(0).toUpperCase() + lenguajeGB['smsModePrivate']().slice(1).toLowerCase()}` : `${lenguajeGB['smsModePublic']().charAt(0).toUpperCase() + lenguajeGB['smsModePublic']().slice(1).toLowerCase()}`}_
+┃ඬ⃟ ✨ *${lenguajeGB['smsBanChats']()}* ➺ _${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_ 
+┃ඬ⃟ ✨ *${lenguajeGB['smsBanUsers']()}* ➺ _${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_ ${(conn.user.jid == global.conn.user.jid ? '' : `\n⎔ *SOY SUB BOT DE: https://wa.me/${global.conn.user.jid.split`@`[0]}*`) || ''}
+┃ඬ⃟ ⚡❖ ── ✦ ──『✙』── ✦ ── ❖
+*╚═══❖•ೋ°            °ೋ•❖═══╝*
 
-    let msg = generateWAMessageFromContent(m.chat, {
-        viewOnceMessage: {
-            message: {
-                interactiveMessage,
-            },
-        },
-    }, { userJid: conn.user.jid, quoted: fkontak });
+*╔══❖•ೋ°_𝐈𝐍𝐅𝐎 - 𝐔𝐒𝐄𝐑_ೋ•❖═══╗*
+┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
+┃☭│ *Tipo de registro »* ${user.registered === true ? `_${user.registroC === true ? 'Registro Completo 🗂️' : 'Registro Rápido 📑'}_` : '❌ _Sin registro_'}
+┃ඬ⃟ ⚡ *Mi estado »* ${typeof user.miestado !== 'string' ? '❌ _' + usedPrefix + 'miestado_' : '_Me siento ' + user.miestado + '_'}
+┃ඬ⃟ ⚡ *Registrado »* ${user.registered === true ? '✅' : '❌ _' + usedPrefix + 'verificar_'}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsBotonM7']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM7']().slice(1).toLowerCase()} »* ${user.premiumTime > 0 ? '✅' : '❌ _' + usedPrefix + 'pase premium_'}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsBotonM5']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM5']().slice(1).toLowerCase()} »* ${role}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsBotonM6']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM6']().slice(1).toLowerCase()} »* ${emoji} || ${user.exp - min}/${xp}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsPareja']()}* ${pareja ? `\n*»* ${name} 💕 ${conn.getName(pareja)}` : `🛐 ${lenguajeGB['smsResultPareja']()}`}
+┃ඬ⃟ ⚡ *Pasatiempo(s)* ➺ ${user.pasatiempo === 0 ? '*Sin Registro*' : user.pasatiempo + '\n'}
+┃ඬ⃟ ⚡ *Experiencia ➟* ${exp} ⚡
+┃ඬ⃟ ⚡ *Diamantes ➟* ${limit} 💎
+┃ඬ⃟ ⚡ *BrolyCoins ➟* ${money} 🪙
+┃ඬ⃟ ⚡ *Tokens ➟* ${joincount} 🀄
+┃ඬ⃟ ⚡❖ ── ✦ ──『✙』── ✦ ── ❖
+*╚═══❖•ೋ°          °ೋ•❖═══╝*`.trim()
+      
+const buttonParamsJson = JSON.stringify({
+title: "VER LISTA DE BROLY-BOT-MD",
+description: "Infórmate por medios oficiales sobre BrolyBot",
+sections: [
+{ title: "ℹ️ Información", highlight_label: "Popular",
+rows: [
+{ header: "✅ Redes", title: "🔓 Para: Todos", description: "Infórmate por medios oficiales sobre BrolyBot", id: usedPrefix + "cuentaskb" },
+{ header: "📢 Grupos/Canales", title: "🔓 Para: Todos", description: "¡Te esperamos!", id: usedPrefix + "grupos" },
+{ header: "🎁 Donar", title: "🔓 Para: Todos", description: "BrolyBot se mantiene funcionando gracias a donaciones ¡tú también puedes sumarte apoyando el proyecto!", id: usedPrefix + 'donar' }
+]},
+{ title: "🔖 Atajos", highlight_label: "Popular",
+rows: [
+{ header: "🆕 Ser Bot (código)", title: "🔓 Para: Todos", description: "¡Conviértete en Bot con el método de código de 8 dígitos!", id: usedPrefix + "serbot --code" },
+{ header: "🤖 Ser Bot (qr)", title: "🔓 Para: Todos", description: "Forma estándar de ser bot con código QR", id: usedPrefix + "serbot" },
+{ header: "🚄 Velocidad", title: "🔓 Para: Todos", description: "Seleccione esto si desea saber el ping del Bot", id: usedPrefix + "ping" },
+{ header: "🀄 Estado", title: "🔓 Para: Todos", description: "Conoce en que estado se encuentra BrolyBot", id: usedPrefix + "estado" }
+]},
+{ title: "Ⓜ️ Menú", highlight_label: "Popular",
+rows: [
+{ header: "⭐ Menú completo", title: "", description: "Visita todos los comandos de BrolyBot", id: usedPrefix + "allmenu" }
+]}
+]})
+const interactiveMessage = {
+body: { text: menu },
+footer: { text: wm + ` \nSi algo no funciona utilice el comando *${usedPrefix}menu2*` },
+header: { title: `⭐ 𝗠𝗘𝗡𝗨 𝗕𝗥𝗢𝗟𝗬 - 𝗕𝗢𝗧 - 𝗠𝗗 ⭐\n${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.genero == 'Ocultado 🕶️' ? `🕶️` : user.genero == 'Mujer 🚺' ? `🚺` : user.genero == 'Hombre 🚹' ? `🚹` : '👤'} ${user.registered === true ? user.name : taguser} 💖*`, subtitle: "test4", hasMediaAttachment: false },
+nativeFlowMessage: { buttons: [{ 
+name: "single_select",
+buttonParamsJson
+}]
+}}
+let katashi = `𝗘𝗡𝗩𝗜𝗔𝗡𝗗𝗢 𝗠𝗘𝗡𝗨 𝗗𝗘 𝗕𝗥𝗢𝗟𝗬 - 𝗕𝗢𝗧 - 𝗠𝗗 𝗘𝗦𝗣𝗘𝗥𝗘 𝗨𝗡 𝗠𝗢𝗠𝗘𝗡𝗧𝗢....`.trim()
+const message = { messageContextInfo: { deviceListMetadata: {}, deviceListMetadataVersion: 2 }, interactiveMessage }
+await conn.sendFile(m.chat, pp, 'katashi.mp4', katashi, fkontak, false, { contextInfo: {mentionedJid, externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 💥 𝗦𝘂𝗽𝗲𝗿 𝗕𝗿𝗼𝗹𝘆-𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', previewType: 0, thumbnail: imagen4, sourceUrl: redesMenu}}})
+await conn.relayMessage(m.chat, { viewOnceMessage: { message } }, {})
+      
+} else { 
+let menu = `╭═══〘卐 _Broly bot MD_ 卐〙═══⊷❍
+┃ ${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.genero == 'Ocultado 🕶️' ? `🕶️` : user.genero == 'Mujer 🚺' ? `🚺` : user.genero == 'Hombre 🚹' ? `🚹` : '👤'} ${user.registered === true ? user.name : taguser} 💖*
 
-    conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
-}
+┃☭│ \`\`\`${horarioFecha}\`\`\`
+┃☭│ *${lenguajeGB['smsTotalUsers']()}* ➺ _${Object.keys(global.db.data.users).length}_ 
+┃☭│ *Registrados »* ${rtotalreg}/${totalreg}    
+┃☭│ *${lenguajeGB['smsUptime']()}* ➺ _${uptime}_ 
+┃☭│ *${lenguajeGB['smsVersion']()}* ➺ _${vs}_
+┃☭│ *${lenguajeGB['smsMode']()} ➺* _${global.opts['self'] ? `${lenguajeGB['smsModePrivate']().charAt(0).toUpperCase() + lenguajeGB['smsModePrivate']().slice(1).toLowerCase()}` : `${lenguajeGB['smsModePublic']().charAt(0).toUpperCase() + lenguajeGB['smsModePublic']().slice(1).toLowerCase()}`}_
+┃☭│ *${lenguajeGB['smsBanChats']()}* ➺ _${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_ 
+┃☭│ *${lenguajeGB['smsBanUsers']()}* ➺ _${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_ ${(conn.user.jid == global.conn.user.jid ? '' : `\n⎔ *SOY SUB BOT DE: https://wa.me/${global.conn.user.jid.split`@`[0]}*`) || ''}
 
-handler.help = ['en', 'dis'].map(v => v + 'able <option>');
-handler.tags = ['group', 'owner'];
-handler.command = ['menulista','lista','listmenu','menulist'];
-handler.exp = 20;
+╭════〘卐 _INFO DEL USER_ 卐〙════⊷❍
+┃
+┃☭│ _*Tipo de registro »*_ ${user.registered === true ? `_${user.registroC === true ? 'Registro Completo 🗂️' : 'Registro Rápido 📑'}_` : '❌ _Sin registro_'}
+┃☭│ _*Mi estado »*_ ${typeof user.miestado !== 'string' ? '❌ _' + usedPrefix + 'miestado_' : '_Me siento ' + user.miestado + '_'}
+┃☭│ _*Registrado »*_ ${user.registered === true ? '✅' : '❌ _' + usedPrefix + 'verificar_'}
+┃☭│ _*${lenguajeGB['smsBotonM7']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM7']().slice(1).toLowerCase()} »*_ ${user.premiumTime > 0 ? '✅' : '❌ _' + usedPrefix + 'pase premium_'}
+┃☭│ _*${lenguajeGB['smsBotonM5']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM5']().slice(1).toLowerCase()} »*_ ${role}
+┃☭│ _*${lenguajeGB['smsBotonM6']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM6']().slice(1).toLowerCase()} »*_ ${emoji} || ${user.exp - min}/${xp}
+┃☭│ _*${lenguajeGB['smsPareja']()}*_ ${pareja ? `\n*»* ${name} 💕 ${conn.getName(pareja)}` : `🛐 ${lenguajeGB['smsResultPareja']()}`}
+┃☭│ _*Pasatiempo(s)*_ ➺ ${user.pasatiempo === 0 ? '*Sin Registro*' : user.pasatiempo + '\n'}
+┃☭│ _*Experiencia ➟* ${exp} ⚡_
+┃☭│ _*Diamantes ➟* ${limit} 💎_
+┃☭│ _*BrolyCoins ➟* ${money} 🪙_
+┃☭│ _*Tokens ➟* ${joincount} 🀄_
 
-export default handler;
+*╭═〘卐 🥷 OPCIONES DE MENU 🥷 〙═⊷❍*
+┃☭╭──────────────
+┃☭│Ⓜ️ _*MENÚ COMPLETO*_ Ⓜ️
+┃☭│➺ _${usedPrefix}menucompleto | allmenu_
+┃☭│
+┃☭│🔊 _*MENÚ DE AUDIOS*_ 🔊
+┃☭│➺ _${usedPrefix}menuaudio | menuaudios_
+┃☭│
+┃☭│💫 _${lenguajeGB['smsTex13']()}_ 💫
+┃☭│➺ _${usedPrefix}infomenu_
+┃☭│
+┃☭│👾 _${lenguajeGB['smsTex10']()}_ 👾
+┃☭│➺ _${usedPrefix}juegosmenu_
+┃☭│
+┃☭│🚀 _${lenguajeGB['smsTex9']()}_ 🚀
+┃☭│➺ _${usedPrefix}descargasmenu_
+┃☭│
+┃☭│🔐 _${lenguajeGB['smsTex11']()}_ 🔐
+┃☭│➺ _${usedPrefix}grupomenu_
+┃☭│
+┃☭│🧸 _${lenguajeGB['smsTex22']()}_ 🧸
+┃☭│➺ _${usedPrefix}stickermenu_
+┃☭│
+┃☭│🛠️ _${lenguajeGB['smsTex12']()}_ 🛠️
+┃☭│➺ _${usedPrefix}herramientasmenu_
+┃☭│
+┃☭│⛩️ _${lenguajeGB['smsTex23']()}_ ⛩️
+┃☭│➺ _${usedPrefix}randommenu_
+┃☭│
+┃☭│🛰️ _${lenguajeGB['smsTex8']()}_ 🛰️
+┃☭│➺ _${usedPrefix}convertidormenu_
+┃☭│
+┃☭│🎈 _${lenguajeGB['smsTex1']()}_🎈
+┃☭│➺ _${usedPrefix}buscarmenu_
+┃☭│
+┃☭│🎧 _${lenguajeGB['smsTex2']()}_ 🎧
+┃☭│➺ _${usedPrefix}audioefectomenu_
+┃☭│
+┃☭│🔞 _${lenguajeGB['smsTex3']()}_ 🔞
+┃☭│➺ _${usedPrefix}menu18 | hornymenu_
+┃☭│
+┃☭│⚗️ _${lenguajeGB['smsTex21']()}_ ⚗️
+┃☭│➺ _${usedPrefix}rpgmenu_
+┃☭│
+┃☭│⛺ _${lenguajeGB['smsTex14']()}_ ⛺
+┃☭│➺ _${usedPrefix}makermenu_
+┃☭│
+┃☭│💮 _${lenguajeGB['smsTex15']()}_ 💮
+┃☭│➺ _${usedPrefix}menulogos2_
+┃☭│
+┃☭│🌅 _${lenguajeGB['smsTex15']()}_ 🌅
+┃☭│➺ _${usedPrefix}menulogos2_
+┃☭│
+┃☭│💎 _${lenguajeGB['smsTex20']()}_ 💎
+┃☭│➺ _${usedPrefix}ownermenu_
+┃☭│
+┃☭│✅ *_CUENTAS OFICIALES KATASHIBOT_* ✅
+┃☭│➺ _${usedPrefix}cuentaskatashibot | cuentaskb_
+┃☭╰──────────────⬣
+*╰═════════════════⊷*`.trim()
+await conn.sendFile(m.chat, gataImg, 'lp.jpg', menu, fkontak, false, { contextInfo: {mentionedJid, externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: gt, body: ' 💥 𝗦𝘂𝗽𝗲𝗿 𝗕𝗿𝗼𝗹𝘆-𝗕𝗼𝘁-𝗠𝗗 - 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽 ', previewType: 0, thumbnail: imagen4, sourceUrl: redesMenu}}}) 
+await conn.sendMessage(m.chat, { audio: { url: vn }, fileName: 'error.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m }) 
+//conn.sendFile(m.chat, gataVidMenu.getRandom(), 'gata.mp4', menu, fkontak)
+}} catch (e) {
+await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)}}
+
+handler.command = /^(menu|menú|memu|memú|help\?)$/i
+handler.register = true
+export default handler
+
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
+function clockString(ms) {
+let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
+let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')}  
+
+/* 
+import fs from 'fs'
+import fetch from 'node-fetch'
+import { xpRange } from '../lib/levelling.js'
+const { levelling } = '../lib/levelling.js'
+import moment from 'moment-timezone'
+
+let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner}) => {
+try{
+let locale = 'es'
+let d = new Date(new Date + 3600000)
+let time = d.toLocaleTimeString(locale, {
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    })
+
+let _uptime = process.uptime() * 1000
+let uptime = clockString(_uptime) 
+wm = global.wm
+vs = global.vs
+      
+let { exp, limit, level, role } = global.db.data.users[m.sender]
+let { min, xp, max } = xpRange(level, global.multiplier)
+let name = await conn.getName(m.sender)
+let pareja = global.db.data.users[m.sender].pasangan 
+let user = global.db.data.users[m.sender]
+let totalreg = Object.keys(global.db.data.users).length
+let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
+
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+
+const sections = [{
+title: comienzo + ' ' + lenguajeGB['smsLista1']() + ' ' + fin,
+rows: [
+{title: lenguajeGB['smsLista2'](), rowId: `${usedPrefix}creadora`},
+{title: lenguajeGB['smsLista3'](), rowId: `${usedPrefix}donar`},
+{title: lenguajeGB['smsLista4'](), rowId: `${usedPrefix}ping`},
+{title: lenguajeGB['smsLista5'](), rowId: `${usedPrefix}infomenu`},
+{title: lenguajeGB['smsLista6'](), rowId: `${usedPrefix}allmenu`},
+{title: lenguajeGB['smsLista7'](), rowId: `${usedPrefix}instalarbot`},
+{title: lenguajeGB['smsLista8'](), rowId: `${usedPrefix}serbot`},
+{title: lenguajeGB['smsLista9'](), rowId: `${usedPrefix}términos`, description: '\n'}
+]},{
+title: comienzo + ' ' + lenguajeGB['smsLista10']() + ' ' + fin,
+rows: [
+{title: lenguajeGB['smsLista11'](), rowId: `${usedPrefix}top`},
+{title: lenguajeGB['smsLista12'](), rowId: `${usedPrefix}listprem`},
+{title: lenguajeGB['smsLista13'](), rowId: `${usedPrefix}pase premium`},
+{title: lenguajeGB['smsLista14'](), rowId: `${usedPrefix}inventario 3`},
+{title: lenguajeGB['smsLista15'](), rowId: `${usedPrefix}rpgmenu`},
+{title: lenguajeGB['smsLista16'](), rowId: `${usedPrefix}buy`},
+{title: lenguajeGB['smsLista17'](), rowId: `${usedPrefix}inventory`, description: '\n'}
+]},{	
+title: comienzo + ' ' + lenguajeGB['smsLista18']() + ' ' + fin,
+rows: [
+{title: lenguajeGB['smsLista19'](), rowId: `${usedPrefix}descargasmenu`},
+{title: lenguajeGB['smsLista20'](), rowId: `${usedPrefix}buscarmenu`},
+{title: lenguajeGB['smsLista21'](), rowId: `${usedPrefix}convertidormenu`},
+{title: lenguajeGB['smsLista22'](), rowId: `${usedPrefix}audioefectomenu`},
+{title: lenguajeGB['smsLista22_1'](), rowId: `${usedPrefix}herramientasmenu`, description: '\n'}
+]},{
+title: comienzo + ' ' + lenguajeGB['smsLista23']() + ' ' + fin,
+rows: [
+{title: lenguajeGB['smsLista24'](), rowId: `${usedPrefix}juegosmenu`},
+{title: lenguajeGB['smsLista25'](), rowId: `${usedPrefix}audios`},
+{title: lenguajeGB['smsLista26'](), rowId: `${usedPrefix}stickermenu`},
+{title: lenguajeGB['smsLista27'](), rowId: `${usedPrefix}makermenu`},
+{title: lenguajeGB['smsLista28'](), rowId: `${usedPrefix}menulogos2`},
+{title: lenguajeGB['smsLista29'](), rowId: `${usedPrefix}randommenu`},
+{title: lenguajeGB['smsLista30'](), rowId: `${usedPrefix}hornymenu`, description: '\n'}
+]},{	
+title: comienzo + ' ' + lenguajeGB['smsLista31']() + ' ' + fin,
+rows: [
+{title: lenguajeGB['smsLista32'](), rowId: `${usedPrefix}grupomenu`},
+{title: lenguajeGB['smsLista33'](), rowId: `${usedPrefix}listas`},
+{title: lenguajeGB['smsLista34'](), rowId: `${usedPrefix}on`},
+{title: lenguajeGB['smsLista35'](), rowId: `${usedPrefix}ownermenu`}
+]}]
+
+const listMessage = {
+text: `╭━⊰ *${ucapan()}* ⊱━⬣
+┃
+┃ *︾ U S U A R I O ︾*
+┃
+┃»» *${user.genero === 0 ? '👤' : user.genero == 'Ocultado 🕶️' ? `🕶️` : user.genero == 'Mujer 🚺' ? `🚺` : user.genero == 'Hombre 🚹' ? `🚹` : '👤'} ${user.registered === true ? user.name : name}*
+┃»» *Mi estado* ➺ ${typeof user.miestado !== 'string' ? '_#miestado || Estado no asignado_' : '_Me siento ' + user.miestado + '_'}
+┃»» *Registrado ➺ ${user.registered === true ? '✅' : '❌ _#verificar_'}* 
+┃»» *Premium ➺ ${user.premiumTime > 0 ? '✅' : '❌ _#pase premium_'}*
+┃
+┃ *︾ M E N U ︾*
+┃
+┃✜ *${lenguajeGB['smsVersion']()}* 
+┃➺ \`\`\`${vs}\`\`\`
+┃✜ *Tipo de registro* 
+┃➺ ${user.registered === true ? `_${user.registroC === true ? 'Registro Completo 🗂️' : 'Registro Rápido 📑'}_` : '_' + usedPrefix + 'verificar_'} 
+┃   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+┃✜ *${lenguajeGB['smsTotalUsers']()}* 
+┃➺ _${Object.keys(global.db.data.users).length}_
+┃✜ *Registrados* 
+┃➺ _${rtotalreg}/${totalreg}_
+┃✜ *${lenguajeGB['smsMode']()}* 
+┃➺ _${global.opts['self'] ? `*${lenguajeGB['smsModePrivate']()}*` : `*${lenguajeGB['smsModePublic']()}*`}_
+┃   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+┃✜ *${lenguajeGB['smsTime']()}* 
+┃➺ _${time}_ 	    
+┃✜ *${lenguajeGB['smsUptime']()}* 
+┃➺ _${uptime}_
+┃   ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+┃✜ *${lenguajeGB['smsBanChats']()}* 
+┃➺ _${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}_ 
+┃✜ *${lenguajeGB['smsBanUsers']()}* 
+┃➺ _${Object.entries(global.db.data.users).filter(user => user[1].banned).length}_
+┃
+╰━⊰ *${wm}* ⊱━⬣\n
+*»» ✨ Pasatiempo(s)* ➺ ${user.pasatiempo === 0 ? '*Sin Registro*' : user.pasatiempo + '\n'}
+*»» ${lenguajeGB['smsPareja']()} ➺ ${pareja ? `${name} 💕 ${conn.getName(pareja)}` : `🛐 ${lenguajeGB['smsResultPareja']()}`}* ${(conn.user.jid == global.conn.user.jid ? '' : `\n»» *Sub Bot del:* wa.me/${global.conn.user.jid.split`@`[0]}`) || ''}`,
+footer: `*↓ TRUSTED LINK* ✅
+${readMore}${redesMenu.getRandom()}`, //${name} ${ucapan()} //lenguajeGB['smsMenu']()
+title: null,
+buttonText: `${lenguajeGB['smsListaMenu']()}`, 
+sections }
+await conn.sendMessage(m.chat, listMessage, {quoted: fkontak})
+
+
+} catch (e) {
+await conn.sendButton(m.chat, `\n${wm}`, lenguajeGB['smsMalError3']() + '#report ' + usedPrefix + command, null, [[lenguajeGB.smsMensError1(), `#reporte ${lenguajeGB['smsMensError2']()} *${usedPrefix + command}*`]], m)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(e)	
+}}
+handler.command = /^(menu|menú|memu|memú|help|info|comandos|2help|menu1.2|ayuda|commands|commandos|m|\?)$/i
+//handler.register = true
+handler.exp = 50
+export default handler
 
 function clockString(ms) {
-    let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000);
-    let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60;
-    let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60;
-    return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':');
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
 }
+
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
+
+function ucapan() {
+  const time = moment.tz('America/Los_Angeles').format('HH')  //America/Los_Angeles  Asia/Jakarta   America/Toronto
+  let res = `${lenguajeGB['smsSaludo']()}`
+  if (time >= 4) {
+    res = `${lenguajeGB['smsDia']()}`
+  }
+  if (time >= 11) {
+    res = `${lenguajeGB['smsTarde']()}`
+  }
+  if (time >= 15) {
+    res = `${lenguajeGB['smsTarde2']()}`
+  }
+  if (time >= 17) {
+    res = `${lenguajeGB['smsNoche']()}`
+  }
+  return res
+} 
+*/
