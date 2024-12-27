@@ -189,31 +189,22 @@ let menu = `${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.ge
 
 ┃☭╞════════════
 
-╭〘卐 _INFO DEL USER_ 卐〙═⊷❍
-┃
-┃☭│ *❰❰ Tipo de registro ❱❱*
-┃☭│ ➺ ${user.registered === true ? `_${user.registroC === true ? '🗂️ Registro Completo' : '📑 Registro Rápido'}_` : '❌ _Sin registro_'}
-┃☭╞════════════
-┃☭│ *❰❰ Mi estado ❱❱*
-┃☭│ ➺ ${typeof user.miestado !== 'string' ? '❌ *Establecer usando:* _' + usedPrefix + 'miestado_' : '_Me siento ' + user.miestado + '_'}
-┃☭╞════════════
-┃☭│ *❰❰ Registrado ❱❱*
-┃☭│ ➺ ${user.registered === true ? '✅ Verificado' : '❌ *Establecer registro usando:* _' + usedPrefix + 'verificar_'}
-┃☭╞════════════
-┃☭│ *❰❰ ${lenguajeGB['smsBotonM7']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM7']().slice(1).toLowerCase()} ❱❱* 
-┃☭│ ➺ ${user.premiumTime > 0 ? '✅ Eres usuario Premium' : '❌ *Establecer Premium:* _' + usedPrefix + 'pase premium_'}
-┃☭╞════════════
-┃☭│ *❰❰ ${lenguajeGB['smsBotonM5']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM5']().slice(1).toLowerCase()} ❱❱* 
-┃☭│ ➺ ${role}
-┃☭╞════════════
-┃☭│ *❰❰ ${lenguajeGB['smsBotonM6']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM6']().slice(1).toLowerCase()} ❱❱*
-┃☭│ ➺ ${emoji} \`${user.exp - min}/${xp}\`
-┃☭╞════════════
-┃☭│ *❰❰ ${lenguajeGB['smsPareja']()} ❱❱*
-┃☭│ ➺ ${pareja ? `${name} 💕 ${conn.getName(pareja)}` : `🛐 ${lenguajeGB['smsResultPareja']()}`}
-┃☭╞════════════
-┃☭│ *❰❰ Pasatiempo(s) ❱❱* 
-┃☭│ ➺ ${user.pasatiempo === 0 ? '*Sin Registro*' : user.pasatiempo + '\n'}
+*╔══❖•ೋ°_𝐈𝐍𝐅𝐎 - 𝐔𝐒𝐄𝐑_ೋ•❖═══╗*
+┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
+┃☭│ *Tipo de registro »* ${user.registered === true ? `_${user.registroC === true ? 'Registro Completo 🗂️' : 'Registro Rápido 📑'}_` : '❌ _Sin registro_'}
+┃ඬ⃟ ⚡ *Mi estado »* ${typeof user.miestado !== 'string' ? '❌ _' + usedPrefix + 'miestado_' : '_Me siento ' + user.miestado + '_'}
+┃ඬ⃟ ⚡ *Registrado »* ${user.registered === true ? '✅' : '❌ _' + usedPrefix + 'verificar_'}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsBotonM7']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM7']().slice(1).toLowerCase()} »* ${user.premiumTime > 0 ? '✅' : '❌ _' + usedPrefix + 'pase premium_'}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsBotonM5']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM5']().slice(1).toLowerCase()} »* ${role}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsBotonM6']().charAt(0).toUpperCase() + lenguajeGB['smsBotonM6']().slice(1).toLowerCase()} »* ${emoji} || ${user.exp - min}/${xp}
+┃ඬ⃟ ⚡ *${lenguajeGB['smsPareja']()}* ${pareja ? `\n*»* ${name} 💕 ${conn.getName(pareja)}` : `🛐 ${lenguajeGB['smsResultPareja']()}`}
+┃ඬ⃟ ⚡ *Pasatiempo(s)* ➺ ${user.pasatiempo === 0 ? '*Sin Registro*' : user.pasatiempo + '\n'}
+┃ඬ⃟ ⚡ *Experiencia ➟* ${exp} ⚡
+┃ඬ⃟ ⚡ *Diamantes ➟* ${limit} 💎
+┃ඬ⃟ ⚡ *BrolyCoins ➟* ${money} 🪙
+┃ඬ⃟ ⚡ *Tokens ➟* ${joincount} 🀄
+┃ඬ⃟ ⚡❖ ── ✦ ──『✙』── ✦ ── ❖
+*╚═══❖•ೋ°          °ೋ•❖═══╝*
 ┃☭│
 ┃☭╞════════════
 ┃☭╒════════════
