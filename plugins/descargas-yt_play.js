@@ -13,8 +13,8 @@ if (command === 'play') {
 additionalText = '𝘼𝙐𝘿𝙄𝙊 🔊'
 } else if (command === 'play2') {
 additionalText = '𝙑𝙄𝘿𝙀𝙊 🎥'}
-let captionvid = `𓆩 𓃠 𓆪 ✧═══ ${vs} ═══✧ 𓆩 𓃠 𓆪*
-𝗕𝗥𝗢𝗟𝗬 𝗕𝗢𝗧 𝗠𝗗\n\n︻︻︻︻︻︻︻︻︻︻︻︻︻︻︻\n\n\n\n︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼
+let captionvid = `𓆩 💥 𓆪 ✧═══ ${vs} ═══✧ 𓆩 💥 𓆪*
+\n\n︻︻︻︻︻︻︻︻︻︻︻︻︻︻︻\n\n𝗕𝗥𝗢𝗟𝗬 𝗕𝗢𝗧 𝗠𝗗\n\n︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼
 
 ও 𝙏𝙄𝙏𝙐𝙇𝙊 | 𝙏𝙄𝙏𝙇𝙀
 »  ${yt_play[0].title}
