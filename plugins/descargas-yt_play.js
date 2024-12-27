@@ -14,7 +14,7 @@ additionalText = '𝘼𝙐𝘿𝙄𝙊 🔊'
 } else if (command === 'play2') {
 additionalText = '𝙑𝙄𝘿𝙀𝙊 🎥'}
 let captionvid = `𓆩 𓃠 𓆪 ✧═══ ${vs} ═══✧ 𓆩 𓃠 𓆪*
-𝐂𝐀𝐍𝐀𝐋 𝐃𝐄 𝐊𝐀𝐓𝐀𝐒𝐇𝐈 𝐁𝐎𝐓\n\n︻︻︻︻︻︻︻︻︻︻︻︻︻︻︻\n\nhttps://whatsapp.com/channel/0029Va8GeVFAO7REOj3qnW37\n\n︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼
+𝗕𝗥𝗢𝗟𝗬 𝗕𝗢𝗧 𝗠𝗗\n\n︻︻︻︻︻︻︻︻︻︻︻︻︻︻︻\n\n\n\n︼︼︼︼︼︼︼︼︼︼︼︼︼︼︼
 
 ও 𝙏𝙄𝙏𝙐𝙇𝙊 | 𝙏𝙄𝙏𝙇𝙀
 »  ${yt_play[0].title}
