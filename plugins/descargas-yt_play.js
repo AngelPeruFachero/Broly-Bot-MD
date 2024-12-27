@@ -1,87 +1,40 @@
-/*
-❀ Plugin personalizado con previsualización de video
-*/
-
-import fetch from 'node-fetch';
 import yts from 'yt-search';
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  try {
-    let queryOrUrl = text.trim(); // Obtener la consulta o enlace
-    if (!queryOrUrl) {
-      return conn.reply(
-        m.chat,
-        `Ingresa un *enlace* de YouTube o un *término de búsqueda*.\n\n*Ejemplo:*\n${usedPrefix + command} Never Gonna Give You Up\n${usedPrefix + command} https://youtu.be/dQw4w9WgXcQ`,
-        m
-      );
+let handler = async (m, { conn, command, args, text, usedPrefix }) => {
+    if (!text) {
+        return conn.reply(m.chat, '*Que quieres que busque 𝑩𝒓𝒐𝒍𝒚𝑩𝒐𝒕-𝑴𝑫*', m);
     }
 
-    let videoData;
+    await m.react('⏳');
+    let res = await yts(text);
+    let play = res.videos[0];
 
-    // Comprobar si es un enlace de YouTube
-    if (queryOrUrl.startsWith('http')) {
-      let apiinfo = await fetch(`https://ytdownloader.nvlgroup.my.id/info?url=${queryOrUrl}`);
-      videoData = await apiinfo.json();
-    } else {
-      // Búsqueda por texto
-      const searchResults = await yts(queryOrUrl);
-      if (!searchResults.videos.length) {
-        return conn.reply(m.chat, 'No se encontraron resultados para tu búsqueda.', m);
-      }
-      let firstVideo = searchResults.videos[0];
-      queryOrUrl = firstVideo.url;
-      let apiinfo = await fetch(`https://ytdownloader.nvlgroup.my.id/info?url=${queryOrUrl}`);
-      videoData = await apiinfo.json();
+    if (!play) {
+        throw `Error: Vídeo no encontrado`;
     }
 
-    let { title, duration, thumbnail, views, url } = videoData;
-    let quality = '480'; // Resolución fija a 480p
-    let formattedViews = parseInt(views).toLocaleString('en-US');
+    let { title, thumbnail, ago, timestamp, views, videoId, url } = play;
 
-    let infoMessage = `✰ *Información del video:*\n\n- *Título:* ${title}\n- *Duración:* ${duration || '-'}\n*Powered @Alba070503*`;
+    let txt = '```𝚈𝚘𝚞𝚃𝚞𝚋𝚎 𝙳𝚎𝚜𝚌𝚊𝚛𝚐𝚊𝚜```\n';
+    txt += '╭━─━─━─━─≪✠≫─━─━─━─━╮\n';
+    txt += `> *𝚃𝚒𝚝𝚞𝚕𝚘* : _${title}_\n`;
+    txt += `> *𝙲𝚛𝚎𝚊𝚍𝚘* : _${ago}_\n`;
+    txt += `> *𝙳𝚞𝚛𝚊𝚌𝚒𝚘𝚗* : _${timestamp}_\n`;
+    txt += `> *𝚅𝚒𝚜𝚒𝚝𝚊𝚜* : _${views.toLocaleString()}_\n`;
+    txt += `> *𝙻𝚒𝚗𝚔* : _https://www.youtube.com/watch?v=${videoId}_\n`;
+    txt += '┗─══──━══─| ✠ |─══━─═──┛ \n';
+    txt += '𝑩𝒓𝒐𝒍𝒚𝑩𝒐𝒕-𝑴𝑫';
 
-    // Enviar información del video al usuario
-    await conn.sendMessage(
-      m.chat,
-      {
-        image: { url: thumbnail },
-        caption: infoMessage,
-      },
-      { quoted: m }
-    );
+    await conn.sendButton2(m.chat, txt, '. ', thumbnail, [
+        ['MP3', `${usedPrefix}ytmp3 ${url}`],
+        ['MENU BROLY', `${usedPrefix}menu ${url}`],
+        ], null, [['Canal', 'https://whatsapp.com/channel/0029VajUPbECxoB0cYovo60W']], m);
 
-    // Descargar el video en resolución 480p
-    let dl_url = `https://ytdownloader.nvlgroup.my.id/download?url=${queryOrUrl}&resolution=${quality}`;
-    let vidFetch = await fetch(dl_url);
-
-    if (!vidFetch.ok) {
-      return conn.reply(m.chat, 'Error al descargar el video. Por favor, verifica el enlace.', m);
-    }
-
-    let videoBuffer = await vidFetch.buffer();
-    let Tamaño = videoBuffer.length / (1024 * 1024); // Tamaño en MB
-
-    if (Tamaño > 100) {
-      await conn.sendMessage(
-        m.chat,
-        { document: videoBuffer, caption: infoMessage, mimetype: 'video/mp4', fileName: `${title}.mp4` },
-        { quoted: m }
-      );
-    } else {
-      await conn.sendMessage(
-        m.chat,
-        { video: videoBuffer, caption: infoMessage, mimetype: 'video/mp4' },
-        { quoted: m }
-      );
-    }
-  } catch (error) {
-    console.error(error);
-    conn.reply(m.chat, `Error: ${error.message}`, m);
-  }
+    await m.react('✅');
 };
 
-handler.command = ['play2', 'ytmp4']; // Comandos disponibles
-handler.help = ['play <búsqueda o enlace>', 'ytmp4 <búsqueda o enlace>'];
-handler.tags = ['downloader'];
+handler.help = ['play'];
+handler.tags = ['downloader'] 
+handler.command = ['play',];
 
 export default handler;
