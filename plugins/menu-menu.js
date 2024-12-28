@@ -163,6 +163,8 @@ let menu = `${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.ge
 ┃ඬ⃟ 🌵 
 ┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
 *╚═══❖•ೋ°               °ೋ•❖═══╝*
+
+
 *╔══❖•ೋ_𝐈𝐍𝐅𝐎 - 𝐁𝐑𝐎𝐋𝐘_ೋ•❖═══╗
 ╭〘卐 _INFO BROLY BOT_ 卐〙⊷❍
 ┃
@@ -176,18 +178,17 @@ let menu = `${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.ge
 ┃☭│ ᩭ✎ ➺ \`\`\`${uptime}\`\`\`
 ┃☭╞════════════
 ┃☭│ ᩭ✎ *❰❰ ${lenguajeGB['smsVersion']()} ❱❱* 
-┃☭│ ᩭ✎ ➺ \`\`\`${vs}\`\`\`
+┃ඬ⃟ ⚡ ➺ \`\`\`${vs}\`\`\`
+┃ඬ⃟ ⚡════════════
+┃ඬ⃟ ⚡ *❰❰ ${lenguajeGB['smsMode']()} ❱❱* 
+┃ඬ⃟ ⚡ ➺ \`${global.opts['self'] ? `${lenguajeGB['smsModePrivate']().charAt(0).toUpperCase() + lenguajeGB['smsModePrivate']().slice(1).toLowerCase()}` : `${lenguajeGB['smsModePublic']().charAt(0).toUpperCase() + lenguajeGB['smsModePublic']().slice(1).toLowerCase()}`}\`
 ┃☭╞════════════
-┃☭│ ᩭ✎ *❰❰ ${lenguajeGB['smsMode']()} ❱❱* 
-┃☭│ ᩭ✎ ➺ \`${global.opts['self'] ? `${lenguajeGB['smsModePrivate']().charAt(0).toUpperCase() + lenguajeGB['smsModePrivate']().slice(1).toLowerCase()}` : `${lenguajeGB['smsModePublic']().charAt(0).toUpperCase() + lenguajeGB['smsModePublic']().slice(1).toLowerCase()}`}\`
-┃☭╞════════════
-┃☭│ ᩭ✎ *❰❰ ${lenguajeGB['smsBanChats']()} ❱❱* 
-┃☭│ ᩭ✎ ➺ \`\`\`${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}\`\`\`
-┃☭╞════════════
-┃☭│ ᩭ✎ *❰❰ ${lenguajeGB['smsBanUsers']()} ❱❱* 
-┃☭│ ᩭ✎ ➺ \`\`\`${Object.entries(global.db.data.users).filter(user => user[1].banned).length}\`\`\`
-
-┃☭╞════════════
+┃ඬ⃟ ⚡ *❰❰ ${lenguajeGB['smsBanChats']()} ❱❱* 
+┃ඬ⃟ ⚡ ➺ \`\`\`${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}\`\`\`
+┃ඬ⃟ ⚡════════════
+┃ඬ⃟ ⚡ *❰❰ ${lenguajeGB['smsBanUsers']()} ❱❱* 
+┃ඬ⃟ ⚡  ➺ \`\`\`${Object.entries(global.db.data.users).filter(user => user[1].banned).length}\`\`\`
+*╚═══❖•ೋ°               °ೋ•❖═══╝*
 
 *╔══❖•ೋ°_𝐈𝐍𝐅𝐎 - 𝐔𝐒𝐄𝐑_ೋ•❖═══╗*
 ┃ඬ⃟ ✨❖ ── ✦ ──『✙』── ✦ ── ❖
