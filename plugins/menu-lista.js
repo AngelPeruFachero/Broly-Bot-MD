@@ -128,7 +128,7 @@ await conn.sendButton(m.chat, `\n${wm}`, lenguajeGB['smsMalError3']() + '#report
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)        
 }}
-handler.command = /^(menu|menú|memu|memú|help|info|comandos|2help|menu1.2|ayuda|commands|commandos|m|\?)$/i
+handler.command = /^(meu|meú|meu|mmú|hlp|ifo|comados|2help|menu1.2|ayuda|commands|commandos|m|\?)$/i
 //handler.register = true
 handler.exp = 50
 export default handler
