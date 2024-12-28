@@ -597,7 +597,7 @@ ${generateCommand(commandsConfig, usedPrefix).replace(/≡/g, '𖡡')}
 const vi = ['https://qu.ax/VHwYv.webp',
 'https://qu.ax/VHwYv.webp',
 'https://qu.ax/VHwYv.webp']
-await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, contextInfo: fakeChannel })
+await conn.sendMessage(m.chat, { imagen: { url: vi.getRandom() }, gifPlayback: true, caption: menu, contextInfo: fakeChannel })
  
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
@@ -607,8 +607,8 @@ console.log(e)}
 
 }
 
-//handler.command = /^(menu|menú|memu|memú|help|info|comandos|2help|menu1.2|ayuda|commands|commandos|menucompleto|allmenu|allm|m|\?)$/i
-handler.command = /^(menucompleto|allmenu|\?)$/i
+//handler.command = /^(menu|menú|memu|memú|help|info|comandos|2help|menu1.2|ayuda|commands|commandos|menucompleto|menu|allm|m|\?)$/i
+handler.command = /^(menucompleto|menu|\?)$/i
 handler.register = true
 export default handler
 
