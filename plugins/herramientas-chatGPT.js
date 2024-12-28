@@ -49,5 +49,5 @@ let gpt = await fetch(`${apis}/ia/gptweb?text=${text}`)
 let res = await gpt.json()
 await m.reply(res.gpt)
 }}
-handler.command = /^(openai|chatgpt|ia|ai|openai2|chatgpt2|ia2)$/i;
+handler.command = /^(broly|chatgpt|ia|ai|openai2|chatgpt2|ia2)$/i;
 export default handler;
