@@ -162,7 +162,7 @@ let menu = `${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.ge
 ┃ඬ⃟ 🌵 ʙʀᴏʟʏ ʙᴏᴛ x ᴀɴɢᴇʟᴘᴇʀᴜғᴀᴄʜᴇʀᴏ
 ┃ඬ⃟ 🌵 
 ┃ඬ⃟ 🌵❖ ── ✦ ──『✙』── ✦ ── ❖
-*╚═══❖•ೋ°           °ೋ•❖═══╝*
+*╚═══❖•ೋ°               °ೋ•❖═══╝*
 *╔══❖•ೋ_𝐈𝐍𝐅𝐎 - 𝐁𝐑𝐎𝐋𝐘_ೋ•❖═══╗
 ╭〘卐 _INFO BROLY BOT_ 卐〙⊷❍
 ┃
@@ -247,16 +247,16 @@ ${generateCommand(commandsConfig, usedPrefix).replace(/≡/g, '𖡡')}
 ┃☭╒════════════
 ┃☭│ > 🪄 *DESCARGAS* 🪄
 ┃☭│
-┃☭│ ➤ _${usedPrefix}imagen | image *texto*_
-┃☭│ ➤ _${usedPrefix}pinterest | dlpinterest *texto*_
-┃☭│ ➤ _${usedPrefix}wallpaper|wp *texto*_
-┃☭│ ➤ _${usedPrefix}play | play2 *texto o link*_
-┃☭│ ➤ _${usedPrefix}play.1 *texto o link*_
-┃☭│ ➤ _${usedPrefix}play.2 *texto o link*_ 
-┃☭│ ➤ _${usedPrefix}ytmp3 | yta *link*_
-┃☭│ ➤ _${usedPrefix}ytmp4 | ytv *link*_
-┃☭│ ➤ _${usedPrefix}pdocaudio | ytadoc *link*_
-┃☭│ ➤ _${usedPrefix}pdocvieo | ytvdoc *link*_
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}imagen | image *texto*_
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}pinterest | dlpinterest *texto*_
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}wallpaper|wp *texto*_
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}play | play2 *texto o link*_
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}play.1 *texto o link*_
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}play.2 *texto o link*_ 
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}ytmp3 | yta *link*_
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}ytmp4 | ytv *link*_
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}pdocaudio | ytadoc *link*_
+┃ඬ⃟ ⚡ ➤ _${usedPrefix}pdocvieo | ytvdoc *link*_
 ┃☭│ ➤ _${usedPrefix}tw |twdl | twitter *link*_
 ┃☭│ ➤ _${usedPrefix}facebook | fb *link*_
 ┃☭│ ➤ _${usedPrefix}instagram *link video o imagen*_
