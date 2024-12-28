@@ -597,7 +597,7 @@ ${generateCommand(commandsConfig, usedPrefix).replace(/≡/g, '𖡡')}
 const vi = ['https://qu.ax/VHwYv.webp',
 'https://qu.ax/VHwYv.webp',
 'https://qu.ax/VHwYv.webp']
-await conn.sendMessage(m.chat, { imagen: { url: vi.getRandom() }, gifPlayback: true, caption: menu, contextInfo: fakeChannel })
+await conn.sendMessage(m.chat, { video: { url: vi.getRandom() }, gifPlayback: true, caption: menu, contextInfo: fakeChannel })
  
 } catch (e) {
 await m.reply(lenguajeGB['smsMalError3']() + '\n*' + lenguajeGB.smsMensError1() + '*\n*' + usedPrefix + `${lenguajeGB.lenguaje() == 'es' ? 'reporte' : 'report'}` + '* ' + `${lenguajeGB.smsMensError2()} ` + usedPrefix + command)
